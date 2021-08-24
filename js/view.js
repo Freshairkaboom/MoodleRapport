@@ -7,6 +7,7 @@ function view() {
     {
         case Pages.LOGIN:
             loginView();
+            logInUser("Admin", "admin"); // CALLING WITH DEBUG ARGUMENTS
             break;
 
         case Pages.USER:
@@ -40,55 +41,130 @@ function loginView() {
 
 function userView() {
     document.getElementById('app').innerHTML = `
-    <button class="loginbutton" onclick="logOutUser()"> Log out</button>
-    Dette er brukersiden.
+    <div class="bannerContainer">
     ${model.app.loggedInUser.name}
+    <button class="loginbutton" onclick="logOutUser()"> Log out</button>
+    </div>
+
+    <div class="navigationContainer">
+        ${navigationMenu()}
+    </div>
+
+    <div class="titleContainer">
+
+    </div>
+
+    <div class="bodyContainer">
+
+    </div>
+    Dette er brukersiden.
     `;
 }
 function adminView() {
     document.getElementById('app').innerHTML = `
-    <button class="loginbutton" onclick="logOutUser()"> Log out</button>
-    Dette er adminsiden.
+    <div class="bannerContainer">
     ${model.app.loggedInUser.name}
+    <button class="loginbutton" onclick="logOutUser()"> Log out</button>
+    </div>
+
+    <div class="navigationContainer">
+        <button onclick="swapMenuItem()">${swapButtonName()}</button>
+        ${navigationMenu()}
+        </div>
+
+    <div class="titleContainer">
+        ${title()}
+    </div>
+
+    <div class="bodyContainer">
+        ${body()}
+    </div>
     `;
+
 }
 
-// function logInUser(){
+function swapButtonName()
+{
+    if (model.PageStates.menuType == MenuType.STUDENT) return "Uker";
+    else return "Studenter";
+}
+function swapMenuItem()
+{
+    model.PageStates.menuType = (model.PageStates.menuType + 1) % 2;
+    console.log(model.PageStates.menuType);
+    view();
+}
 
-//     let user = model.inputs.loginPage.username;
-//     let pw = model.inputs.loginPage.password;
+function navigationMenu() {
 
-//     model.app.currentPage = confirmUser(user, pw);
-//     view();
-// }
+    let html = '';
 
-// function confirmUser(user, pw){
+    switch (model.PageStates.menuType)
+    {
+        case MenuType.WEEKS:
 
-//     let foundUser = false;
+            html += `
+            ${listWeeks()}
+            `;
 
-//     model.users.forEach(element =>
-//                                     {
-//                                     if (element.name == user && element.password == pw)
-//                                         {
-//                                             model.app.loggedInUser = element;
-//                                             foundUser = true;
-//                                         }
-//                                     }
-//                                 );
+            break;
 
-//     if (!foundUser) { console.log("Cant find user"); return Pages.LOGIN; }
+        case MenuType.STUDENT:
 
-//     if (model.app.loggedInUser.isAdmin) { console.log("ADMIN"); return Pages.ADMIN }
-//     else console.log("USER"); return Pages.USER ;
-// }
+            html += `
+            ${listStudents()}
+            `;
 
-// function logOutUser()
-// {
-//     model.app.currentPage = Pages.LOGIN;
-//     view();
-// }
+            break;
 
-// function rememberPassword()
-// {
-//     console.log("Exception in rememberPassword() - Not Implemented yet");
-// }
+
+    }
+
+    return html;
+}
+
+function listWeeks()
+{
+    let list = '<ul>';
+
+    for (i = 0; i < model.weeks.length; i++)
+        list += '<li>' + 'Uke' + '' + model.weeks[i].weekId +'</li>';
+
+    list += '</ul>';
+
+    return list;
+}
+
+function listStudents()
+{
+    let list = '<ul>';
+
+    for (i = 0; i < model.users.length; i++)
+    {
+        if (!model.users[i].isAdmin)
+            list += '<li>' + model.users[i].name +'</li>';
+    }
+
+
+    list += '</ul>';
+
+    return list;
+}
+
+
+function body() {
+    let html = '';
+    html += `
+       Hovedinnhold
+    `;
+
+    return html;
+}
+function title() {
+    let html = '';
+    html += `
+        Tittel
+    `;
+
+    return html;
+}
