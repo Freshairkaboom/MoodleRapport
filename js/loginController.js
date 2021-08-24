@@ -1,7 +1,14 @@
-function logInUser(){
+function logInUser(_user, _pw){
+    let user;
+    let pw;
 
-    let user = model.inputs.loginPage.username;
-    let pw = model.inputs.loginPage.password;
+    //#region DEBUG_ARGUMENTS
+    if (_user == null) user = model.inputs.loginPage.username;
+    else user = _user;
+
+    if (_pw == null) pw = model.inputs.loginPage.password;
+    else pw = _pw;
+    //#endregion
 
     model.app.currentPage = confirmUser(user, pw);
     view();

@@ -12,6 +12,10 @@ const Pages = {
   USER: "userPage",
   ADMIN: "adminPage",
 }
+const MenuType = {
+  STUDENT: 0,
+  WEEKS: 1,
+}
 
 // MODEL
 const model = {
@@ -33,6 +37,10 @@ const model = {
         studentPage: {
             chatbox: "",
         },
+    },
+
+    PageStates: {
+      menuType: MenuType.STUDENT,
     },
 
     // Common data
