@@ -257,8 +257,8 @@ input[type="button"].button-primary,
 input[type="reset"].button-primary,
 input[type="submit"].button-primary {
   color: #fff;
-  background-color: #33c3f0;
-  border-color: #33c3f0;
+  background-color: #ec7f13;
+  border-color: #ec7f13;
 }
 .button.button-primary:focus,
 .button.button-primary:hover,
@@ -271,8 +271,8 @@ input[type="reset"].button-primary:hover,
 input[type="submit"].button-primary:focus,
 input[type="submit"].button-primary:hover {
   color: #fff;
-  background-color: #1eaedb;
-  border-color: #1eaedb;
+  background-color: #e27911;
+  border-color: #e27911;
 }
 input[type="email"],
 input[type="number"],
