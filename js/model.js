@@ -17,11 +17,8 @@ const MenuType = {
   WEEKS: 1,
 }
 
-var chartDataTest;
 // MODEL
 const model = {
-
-
     // App level
     app: {
         currentPage: Pages.LOGIN,
@@ -66,8 +63,6 @@ const model = {
         { id: 12, name: "student12",  password: "admin", isAdmin: false, isDisabled: false },
     ],
 
-
-
     weeks: [
         { weekId: 1, taskCount: 7 },
         { weekId: 2, taskCount: 9 },
@@ -77,15 +72,11 @@ const model = {
          *           task = index starts 0          *
         /*------------------------------------------*/
     tasks: [
-      { id: 1, weekIndex: 0, taskInWeek: 0, progress: Progress.STARTED,      approved: false, student: 1 },
-      { id: 2, weekIndex: 0, taskInWeek: 1, progress: Progress.NOTSTARTED,    approved: false, student: 1 },
-      { id: 3, weekIndex: 0, taskInWeek: 3, progress: Progress.STARTED,       approved: false, student: 1 },
-      { id: 4, weekIndex: 0, taskInWeek: 0, progress: Progress.STARTED,       approved: false, student: 2 },
-      { id: 5, weekIndex: 0, taskInWeek: 4, progress: Progress.FINISHED,      approved: false, student: 1 },
-      { id: 6, weekIndex: 0, taskInWeek: 5, progress: Progress.FINISHED,      approved: false, student: 1 },
+      { id: 1, weekIndex: 0, taskInWeek: 0, progress: Progress.FINISHED,  approved: false, student: 1 },
+      { id: 2, weekIndex: 0, taskInWeek: 1, progress: Progress.STARTED,   approved: false, student: 1 },
+      { id: 3, weekIndex: 0, taskInWeek: 3, progress: Progress.STARTED,   approved: false, student: 1 },
+      { id: 4, weekIndex: 0, taskInWeek: 0, progress: Progress.STARTED,   approved: false, student: 2 },
     ],
-
-
 
     assignments: [
         /*-----------------------------*

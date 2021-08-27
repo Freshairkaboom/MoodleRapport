@@ -18,15 +18,20 @@ function confirmUser(user, pw){
 
     let foundUser = false;
 
-    model.users.forEach(e => {
-        if (e.name == user && e.password == pw)
-            { model.app.loggedInUser = e; foundUser = true; }
-    });
+    model.users.forEach(element =>
+                                    {
+                                    if (element.name == user && element.password == pw)
+                                        {
+                                            model.app.loggedInUser = element;
+                                            foundUser = true;
+                                        }
+                                    }
+                                );
 
     if (!foundUser) { console.log("Cant find user"); return Pages.LOGIN; }
 
     if (model.app.loggedInUser.isAdmin) { console.log("ADMIN"); return Pages.ADMIN }
-    else { console.log("USER"); return Pages.USER; }
+    else console.log("USER"); return Pages.USER ;
 }
 
 function logOutUser()
