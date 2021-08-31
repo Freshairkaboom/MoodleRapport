@@ -1,4 +1,4 @@
-const APP_VERSION_NUMBER = "v0.0000000000005";
+const APP_VERSION_NUMBER = "v0.0000000000006";
 
 // ENUMS
 const Progress = {
@@ -17,13 +17,18 @@ const MenuType = {
   WEEKS: 1,
 }
 
+// DEBUG STUFF
+const debug = {
+      
+      useLoginTesting: true,
+      defaultUSER: "Admin",
+      defaultPW: "admin",
+  
+}
 var chartDataTest;
 // MODEL
 const model = {
 
-    // DEBUG STUFF
-    defaultUSER: "Admin",
-    defaultPW: "admin",
 
     // App level
     app: {

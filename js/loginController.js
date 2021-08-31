@@ -1,18 +1,21 @@
-function logInUser(_user, _pw){
+function logInUser()
+{
     let user;
     let pw;
 
-    console.log(_user);
-
     //#region DEBUG_ARGUMENTS
-    if (_user == null) //user = model.inputs.loginPage.username;
-    else { user = _user; model.defaultUSER = null };
-
-    console.log(model.defaultUSER);
-
-    if (_pw == null) //pw = model.inputs.loginPage.password;
-    else { pw = _pw; model.defaultPW = null };
-    //#endregion
+    if (debug.useLoginTesting)
+    {
+        user = debug.defaultUSER;
+        pw = debug.defaultPW;
+        debug.useLoginTesting = false;
+    }
+    else
+    {
+        user = model.inputs.loginPage.username;
+        pw = model.inputs.loginPage.password;
+    }
+    //#endregion    
 
     model.app.currentPage = confirmUser(user, pw);
     view();

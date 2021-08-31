@@ -119,6 +119,8 @@ function setChartProperties(newChart)
 
 
 view();
+logInUser();
+
 function view() {
 
     document.body.innerHTML = `<div id="app"></div>`;
@@ -127,7 +129,6 @@ function view() {
     {
         case Pages.LOGIN:
             loginView();
-            logInUser(model.defaultUSER, model.defaultPW); // CALLING WITH DEBUG ARGUMENTS
             break;
 
         case Pages.USER:
