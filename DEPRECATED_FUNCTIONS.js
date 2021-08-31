@@ -150,3 +150,115 @@
 
 //       });
 // }
+
+
+
+
+/*-----------------------------------------------------*
+ *     generateRandomData() with Validation Checks     *
+ *-----------------------------------------------------*/
+
+// function generateRandomData()
+// {  
+//     // Clamp Implementation
+//     const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+//     model.tasks = [];
+    
+//     let amountToGenerate = 800;
+//     let totalWeeks = model.weeks.length;
+//     let progressLength = 3; //Enum Progress has 3 properties
+//     let i = 0;
+
+
+//     // For verification of data distribution
+//     let _weekData = [totalWeeks];
+//     let _countData = [totalWeeks];
+
+//     let _completedTasks = [];
+
+//     for (i = 0; i < totalWeeks; i++)
+//     {
+//         let tasksForWeek = [[0],[0],[0]];
+//         _completedTasks[i] = tasksForWeek;
+//     }
+    
+//     for (i = 0; i < totalWeeks; i++)
+//     {
+//         _weekData[i] = 0;
+//         _countData[i] = 0;
+//     }
+//     // End of verification
+
+//     while (amountToGenerate > 0)
+//     {        
+//         let nextID = i;
+//         let randomWeek = Math.floor(Math.random() * totalWeeks);
+//         let taskCount = getTaskCountForWeek(randomWeek);
+
+//         // Distribute tasks with results skewed towards earlier weeks having a higher percentage of completed tasks compared to later weeks
+//         let distributionStrength = .75;
+//         let distributionFactor = 1 - ( Math.random() * (( randomWeek ) / ( totalWeeks * (1 - distributionStrength) )));
+//         let distribution = clamp(distributionFactor, 0, 1);
+
+
+
+//         // VERIFICATION_LOGGING
+//         _weekData[randomWeek] += distribution;
+//         _countData[randomWeek] += 1;
+//         // VERIFICATION_LOGGING
+
+
+
+//         // Randomize The data
+
+//         let randomTaskInWeek = Math.floor(Math.random() * taskCount);
+//         let randomProgress = Math.round((clamp(((Math.random() * distribution) * progressLength), 0, progressLength-1)));        
+//         let randomStudent = Math.floor(Math.random() * model.users.length);
+
+//         // Populate task with random data
+//         let randomizedTask = { id: nextID,  weekIndex: randomWeek,  taskInWeek: randomTaskInWeek, progress: randomProgress, approved: false, student: randomStudent }
+
+//         // Track tasks with same Week/taskID as the currently added task to prevent tasks from exceeding maximum possible tasks for week
+//         let duplicateTasks = 0;
+//         model.tasks.forEach(task => {
+//             if (task.weekIndex == randomizedTask.weekIndex && task.taskInWeek == randomizedTask.taskInWeek)
+//                 duplicateTasks++;              
+//         })
+
+        
+//         if (duplicateTasks <= taskCount)
+//         {
+//             model.tasks.push(randomizedTask);
+//             _completedTasks[randomizedTask.weekIndex][randomizedTask.progress]++; // VERIFICATION_LOGGING
+//         }
+            
+
+//         i++;
+//         amountToGenerate--;
+//     }
+
+//     // Logging verification data
+//     console.log("Weekly Distribution:");
+//     for (i = 0; i < _weekData.length; i++)
+//     {
+//         let total = _weekData[i] / _countData[i];
+//         console.log("Week " + i + ": " + total);
+//     }
+//     console.log("*******************************");
+//     console.log(" ");
+//     console.log("*******************************");
+
+
+//     for (i = 0; i < _completedTasks.length; i++)
+//     {
+//         console.log("Completed tasks week " + i + ": " + _completedTasks[i][2]);
+//         console.log("Started tasks week " + i + ": " + _completedTasks[i][1]);
+//         console.log("Not started tasks week " + i + ": " + _completedTasks[i][0]);
+//         console.log("______________");
+//     }
+    
+//     // End of verification
+
+//     view();
+// }

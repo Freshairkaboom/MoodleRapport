@@ -1,4 +1,4 @@
-const APP_VERSION_NUMBER = "v0.0000000000006";
+const APP_VERSION_NUMBER = "v0.0000000000007";
 
 // ENUMS
 const Progress = {
@@ -83,6 +83,11 @@ const model = {
         { weekId: 1, taskCount: 7 },
         { weekId: 2, taskCount: 9 },
         { weekId: 3, taskCount: 10 },
+        { weekId: 4, taskCount: 6 },
+        { weekId: 5, taskCount: 5 },
+        { weekId: 6, taskCount: 2 },
+        { weekId: 7, taskCount: 0 },
+        { weekId: 8, taskCount: 0 },
     ],
         /*------------------------------------------*
          *           task = index starts 0          *
