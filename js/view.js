@@ -1,10 +1,42 @@
 
-function getTaskCountForWeek(week)
+generateRandomData();
+
+function clearRandomData()
+{
+    model.tasks = [];
+    view();
+}
+function generateRandomData()
+{
+    model.tasks = [];
+
+    let amountToGenerate = 300;
+    let progressLength = 3; //Enum Progress has 3 properties
+    let i = 0;
+
+    while (amountToGenerate > 0)
+    {
+        let randomID = i;
+        let randomWeek = Math.floor(Math.random() * model.weeks.length);
+        let randomTaskInWeek = Math.floor(Math.random() * getTaskCountForWeek(randomWeek));
+        let randomProgress = Math.floor(Math.random() * progressLength);
+        let randomStudent = Math.floor(Math.random() * model.users.length);
+
+        let randomizedTask = { id: randomID,  weekIndex: randomWeek,  taskInWeek: randomTaskInWeek, progress: randomProgress, approved: false, student: randomStudent }
+
+        model.tasks.push(randomizedTask);
+
+        i++;
+        amountToGenerate--;
+    }
+}
+
+function getTaskCountForWeek(_week)
 {
     let totalTasks;
-    model.weeks.forEach(element => {
-        if (element.weekId == week)
-        totalTasks = element.taskCount;
+    model.weeks.forEach(week => {
+        if (week.weekId == _week+1) //Adding one because our weekId starts at 1, while the week passed into function is an index
+            totalTasks = week.taskCount;
     })
 
     return totalTasks;
@@ -12,137 +44,90 @@ function getTaskCountForWeek(week)
 
 function getChartData(_week, _student)
 {
-    // set the data
-    // chart library needs data in the following format:
-    /*
-        let data = [
-        {x: "White", value: 223553265},
-        {x: "Black or African American", value: 38929319},
-        {x: "American Indian and Alaska Native", value: 2932248},
-        {x: "Asian", value: 14674252},
-        {x: "Native Hawaiian and Other Pacific Islander", value: 540013},
-        {x: "Some Other Race", value: 19107368},
-        {x: "Two or More Races", value: 9009073}
-      ];
-      */
-
     let week = _week;
     let student = _student;
-    let tasksThisWeek = getTaskCountForWeek(week);
 
-    let notStartedObj = {
-        x: 'Not Started',
-        value: 0,
-        normal: {fill: "#FF0000",}
-    }
-    let startedObj = {
-        x: 'Started',
-        value: 0,
-        normal: {fill: "#FFFF00",}
-    }
-    let finishedObj = {
-        x: 'Finished',
-        value: 0,
-        normal: {fill: "#32CD32",}
-    }
+    // Set up data for the pie chart with values at zero
+    let pieData = [
+        { x: 'Ikke Startet', value: 0, normal: {fill: "#FF0000",}},
+        { x: 'Startet', value: 0, normal: {fill: "#FFFF00",}},
+        { x: 'Ferdig', value: 0, normal: {fill: "#32CD32",}}]
 
-    // let week = 1;
-    // let student = 0;
-    //let tasksThisWeek = getTaskCountForWeek(week);
+    // Grab all current tasks for the student and week passed into this function. Also grabbing the amount of tasks for the specific week.
+    let tempData = getDataForStudent(week, student);
+    let remainingTasks = getTaskCountForWeek(week);
 
-    let tempData = getDataForStudent(0, 1);
+    // Sort through the data and assign it to the proper pie-pieces. Subtract from remaining tasks for each task in list.
+    tempData.forEach(task => {
+      pieData[task.progress].value++; remainingTasks--;
+    })
 
-    console.log(tempData.length);
-    console.log(tempData[0]);
-    console.log("Tasks this week:" + tasksThisWeek);
-    console.log("#############");
-
-    let remainingTasks = tasksThisWeek;
-
-    for (i = 0; i < tempData.length; i++)
-    {
-        if (tempData[i].progress == Progress.STARTED)
-        {
-            startedObj.value++;
-            remainingTasks--;
-        }
-        else if (tempData[i].progress == Progress.FINISHED)
-        {
-            finishedObj.value++;
-            remainingTasks--;
-        }
-        else if (tempData[i].progress == Progress.NOTSTARTED)
-        {
-            notStartedObj.value++;
-            remainingTasks--;
-        }
-    }
-    notStartedObj.value += remainingTasks;
+    //Finally assign any leftover tasks to the not started category since those may or may not be included in the tempData list.
+    pieData[0].value += remainingTasks;
 
     let finalData = [];
+    // Loop through the sorted data and discard anything without a value. Silly to display a graph with nothing
+    pieData.forEach(sector => {
+        if (sector.value > 0) finalData.push(sector);
+    });
 
-    if (notStartedObj.value > 0)
-        finalData.push(notStartedObj);
-    if (startedObj.value > 0)
-        finalData.push(startedObj);
-    if (finishedObj.value > 0)
-        finalData.push(finishedObj);
-
-    console.log(finalData)
-
+    // Return the finalized pie data for this particular student back to the chart generator
     return finalData;
 }
 
+function fillPieCharts()
+{
+    let week = model.PageStates.selectedWeek;
 
-createPieChart();
-function createPieChart() {
-    anychart.onDocumentReady(function() {
+    model.users.forEach(user => {
+        if (!user.isAdmin && !user.isDisabled)
+        {
+            // Generate the data
+            let id = user.id.toString();
+            let data = getChartData(week, user.id);
+            let newChart = anychart.pie();
 
+            // Assign the data
+            newChart.container(id);
+            newChart.data(data);
 
-        let data = getChartData(1, 0);
-        // create the chart
+            // Set the properties
+            setChartProperties(newChart);
 
-        let chart = anychart.pie();
-
-        // set the chart title
-        // chart.title("Student 0");
-
-        // add the data
-        chart.data(data);
-
-        // display the chart in the container
-        chart.container('container');
-        chart.draw();
-        chart.legend(false);
-        chart.radius("40%");
-        chart.background().stroke("1 red");
-        chart.background().fill("#fff", 0);
-
-        var labels = chart.labels();
-        labels.enabled(true);
-        labels.fontColor("black");
-        labels.fontSize("6")
-
-
-
-        // let chart_2 = anychart.pie();
-        // // chart_2.title("Student 2");
-
-        // chart_2.data(data);
-        // chart_2.container('container2');
-        // chart_2.draw();
-
-      });
+            // Draw the chart
+            newChart.draw();
+        }
+    })
 }
+
+//#region Chart Properties
+function setChartProperties(newChart)
+{
+    // Set the properties
+    newChart.legend(false);
+    newChart.radius("40%");
+    newChart.background().stroke("1 red");
+    newChart.background().fill("#fff", 0);
+
+    // Set the labels
+    var labels = newChart.labels();
+    labels.enabled(true);
+    labels.fontColor("black");
+    labels.fontSize("10")
+}
+//#endregion
+
 
 view();
 function view() {
+
+    document.body.innerHTML = `<div id="app"></div>`;
 
     switch (model.app.currentPage)
     {
         case Pages.LOGIN:
             loginView();
-            logInUser("Admin", "admin"); // CALLING WITH DEBUG ARGUMENTS
+            logInUser(model.defaultUSER, model.defaultPW); // CALLING WITH DEBUG ARGUMENTS
             break;
 
         case Pages.USER:
@@ -156,6 +141,64 @@ function view() {
 }
 
 
+
+
+function adminView() {
+    document.getElementById('app').innerHTML = `
+    <div class="pageContainer">
+
+    <div class="bannerContainer">
+    ${model.app.loggedInUser.name}
+    <button class="button-primary" onclick="logOutUser()"> Log out</button>
+    </div>
+
+    <div class="navigationContainer">
+        Modul 1<button class="button-primary" onclick="swapMenuItem()">${swapButtonName()}</button>
+        ${navigationMenu()}
+        </div>
+
+    <div class="titleContainer">
+        ${title()}
+    </div>
+
+    <div class="bodyContainer">
+        ${createChartContainers()}
+    </div>
+    </div>
+    `;
+
+    fillPieCharts();
+}
+// KAKEDIAGRAM
+function createDiagrams(week)
+{
+    let chartData = [];
+
+    for (i = 0; i < model.users.length; i++)
+    {
+        if (!model.users[i].isAdmin && !model.users[i].isDisabled)
+        {
+            chartData.push(getDataForStudent(week, i))
+        }
+    }
+
+
+    console.log(chartData);
+}
+
+function getDataForStudent(week, student)
+{
+    let userData = [];
+
+    model.tasks.forEach(element => {
+        if (element.weekIndex == week && element.student == student)
+        {
+            userData.push(element);
+        }
+    })
+
+    return userData;
+}
 
 function loginView() {
 
@@ -196,62 +239,6 @@ function userView() {
     Dette er brukersiden.
     `;
 }
-function adminView() {
-    document.getElementById('app').innerHTML = `
-    <div class="bannerContainer">
-    ${model.app.loggedInUser.name}
-    <button class="button-primary" onclick="logOutUser()"> Log out</button>
-    </div>
-
-    <div class="navigationContainer">
-        Modul 1<button class="button-primary" onclick="swapMenuItem()">${swapButtonName()}</button>
-        ${navigationMenu()}
-        </div>
-
-    <div class="titleContainer">
-        ${title()}
-    </div>
-
-    <div class="bodyContainer">
-        ${body()}
-        <div id="container"  style="width: 20rem; height: 20rem;"></div>
-        <div id="container2" style="width: 20rem; height: 20rem"></div>
-    </div>
-    `;
-
-}
-// KAKEDIAGRAM
-function createDiagrams(week)
-{
-    let chartData = [];
-
-    for (i = 0; i < model.users.length; i++)
-    {
-        if (!model.users[i].isAdmin && !model.users[i].isDisabled)
-        {
-            chartData.push(getDataForStudent(week, i))
-        }
-    }
-
-
-    console.log(chartData);
-}
-
-function getDataForStudent(week, student)
-{
-    let userData = [];
-
-    model.tasks.forEach(element => {
-        if (element.weekIndex == week && element.student == student)
-        {
-            userData.push(element);
-        }
-    })
-
-    return userData;
-}
-
-
 
 // Admin controller
 function swapButtonName()
@@ -294,12 +281,23 @@ function navigationMenu() {
     return html;
 }
 
+function updateSelectedWeek(_week)
+{
+    model.PageStates.selectedWeek = _week-1;
+    view();
+}
+
 function listWeeks()
 {
     let list = '<ul>';
 
-    for (i = 0; i < model.weeks.length; i++)
-        list += '<li>' + 'Uke' + '' + model.weeks[i].weekId +'</li>';
+    model.weeks.forEach(week =>
+    {
+        let _weekText = `Uke ${week.weekId}`;
+        if (week.weekId-1 == model.PageStates.selectedWeek) _weekText = `=> UKE ${week.weekId} <=`;
+
+        list += `<li class="week" onclick="updateSelectedWeek(${week.weekId})">` + `${_weekText} ` + `</li>`;
+    })
 
     list += '</ul>';
 
@@ -310,12 +308,10 @@ function listStudents()
 {
     let list = '<ul>';
 
-    for (i = 0; i < model.users.length; i++)
-    {
-        if (!model.users[i].isAdmin)
-            list += '<li>' + model.users[i].name +'</li>';
-    }
-
+    model.users.forEach(user => {
+        if (!user.isAdmin && !user.isDisabled)
+            list += '<li  class="student">' + user.name +'</li>';
+    })
 
     list += '</ul>';
 
@@ -323,11 +319,13 @@ function listStudents()
 }
 
 
-function body() {
+function createChartContainers() {
     let html = '';
-    html += `
-       Hovedinnhold
-    `;
+
+    model.users.forEach(user => {
+        if (!user.isAdmin && !user.isDisabled)
+            html += ` <div id=${user.id.toString()} class="student" style="width: 20rem; height: 20rem;">${user.name}</div>`;
+    })
 
     return html;
 }

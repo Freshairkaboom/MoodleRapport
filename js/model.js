@@ -1,4 +1,4 @@
-const APP_VERSION_NUMBER = "v0.00000000000003";
+const APP_VERSION_NUMBER = "v0.0000000000005";
 
 // ENUMS
 const Progress = {
@@ -21,11 +21,20 @@ var chartDataTest;
 // MODEL
 const model = {
 
+    // DEBUG STUFF
+    defaultUSER: "Admin",
+    defaultPW: "admin",
 
     // App level
     app: {
         currentPage: Pages.LOGIN,
         loggedInUser: "",
+    },
+
+
+    PageStates: {
+      menuType: MenuType.WEEKS,
+      selectedWeek: 0,
     },
 
     // Input level
@@ -42,9 +51,7 @@ const model = {
         },
     },
 
-    PageStates: {
-      menuType: MenuType.STUDENT,
-    },
+
 
     // Common data
 
@@ -67,7 +74,6 @@ const model = {
     ],
 
 
-
     weeks: [
         { weekId: 1, taskCount: 7 },
         { weekId: 2, taskCount: 9 },
@@ -77,12 +83,18 @@ const model = {
          *           task = index starts 0          *
         /*------------------------------------------*/
     tasks: [
-      { id: 1, weekIndex: 0, taskInWeek: 0, progress: Progress.STARTED,      approved: false, student: 1 },
-      { id: 2, weekIndex: 0, taskInWeek: 1, progress: Progress.NOTSTARTED,    approved: false, student: 1 },
-      { id: 3, weekIndex: 0, taskInWeek: 3, progress: Progress.STARTED,       approved: false, student: 1 },
-      { id: 4, weekIndex: 0, taskInWeek: 0, progress: Progress.STARTED,       approved: false, student: 2 },
-      { id: 5, weekIndex: 0, taskInWeek: 4, progress: Progress.FINISHED,      approved: false, student: 1 },
-      { id: 6, weekIndex: 0, taskInWeek: 5, progress: Progress.FINISHED,      approved: false, student: 1 },
+      { id: 1,  weekIndex: 0,  taskInWeek: 0, progress: Progress.STARTED,        approved: false, student: 1 },
+      { id: 2,  weekIndex: 0,  taskInWeek: 1, progress: Progress.NOTSTARTED,     approved: false, student: 1 },
+      { id: 3,  weekIndex: 0,  taskInWeek: 3, progress: Progress.STARTED,        approved: false, student: 1 },
+      { id: 4,  weekIndex: 0,  taskInWeek: 0, progress: Progress.STARTED,        approved: false, student: 2 },
+      { id: 5,  weekIndex: 0,  taskInWeek: 4, progress: Progress.FINISHED,       approved: false, student: 1 },
+      { id: 6,  weekIndex: 0,  taskInWeek: 5, progress: Progress.FINISHED,       approved: false, student: 1 },
+      { id: 7,  weekIndex: 1,  taskInWeek: 1, progress: Progress.FINISHED,       approved: false, student: 2 },
+      { id: 8,  weekIndex: 1,  taskInWeek: 2, progress: Progress.FINISHED,       approved: false, student: 2 },
+      { id: 9,  weekIndex: 1,  taskInWeek: 3, progress: Progress.FINISHED,       approved: false, student: 2 },
+      { id: 10, weekIndex: 1,  taskInWeek: 4, progress: Progress.FINISHED,       approved: false, student: 2 },
+      { id: 11, weekIndex: 2,  taskInWeek: 1, progress: Progress.STARTED,        approved: false, student: 2 },
+      { id: 12, weekIndex: 2,  taskInWeek: 2, progress: Progress.FINISHED,       approved: false, student: 2 },
     ],
 
 

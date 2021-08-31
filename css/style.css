@@ -436,3 +436,55 @@ hr {
   display: table;
   clear: both;
 }
+/**************************************************************Our CSS*******************************************/
+.anychart-credits {
+  display: none;
+}
+
+.student {
+  float:left;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.pageContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  padding: 0;
+  margin: -8px;
+
+
+}
+
+.navigationContainer {
+  grid-area: 2 / 1 / 11 / 2;
+  margin-left: 1rem;
+  padding: 1rem;
+}
+.bodyContainer {
+  grid-area: 3 / 2 / 11 / 7;
+  text-align: center;
+  }
+.bannerContainer {
+  grid-area: 1 / 1 / 2 / 7;
+  background-color: rgb(165, 173, 173);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: absolute;
+  top: 0;
+  width: 100vW;
+  text-align: right;
+  }
+.titleContainer {
+  grid-area: 2 / 2 / 3 / 5;
+
+  margin-left: 1rem;
+  padding: 1rem;
+}
+
+.week,.student:hover {
+  cursor: pointer;
+}

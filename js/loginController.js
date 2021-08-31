@@ -2,12 +2,16 @@ function logInUser(_user, _pw){
     let user;
     let pw;
 
-    //#region DEBUG_ARGUMENTS
-    if (_user == null) user = model.inputs.loginPage.username;
-    else user = _user;
+    console.log(_user);
 
-    if (_pw == null) pw = model.inputs.loginPage.password;
-    else pw = _pw;
+    //#region DEBUG_ARGUMENTS
+    if (_user == null) //user = model.inputs.loginPage.username;
+    else { user = _user; model.defaultUSER = null };
+
+    console.log(model.defaultUSER);
+
+    if (_pw == null) //pw = model.inputs.loginPage.password;
+    else { pw = _pw; model.defaultPW = null };
     //#endregion
 
     model.app.currentPage = confirmUser(user, pw);
