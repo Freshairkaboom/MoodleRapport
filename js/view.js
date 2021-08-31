@@ -37,7 +37,7 @@ function generateRandomData()
         // Populate task with random data
         let randomizedTask = { id: nextID,  weekIndex: randomWeek,  taskInWeek: randomTaskInWeek, progress: randomProgress, approved: false, student: randomStudent }
 
-        // Check if the current adding the current task exceeds the maximum possible tasks for this week
+        // Check if adding the current task exceeds the maximum possible tasks for this week
         let duplicateTasks = 0;
         model.tasks.forEach(task => {
             if (task.weekIndex == randomizedTask.weekIndex && task.taskInWeek == randomizedTask.taskInWeek && task.student == randomizedTask.student)
