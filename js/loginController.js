@@ -15,19 +15,19 @@ function logInUser()
         user = model.inputs.loginPage.username;
         pw = model.inputs.loginPage.password;
     }
-    //#endregion    
+    //#endregion
 
     model.app.currentPage = confirmUser(user, pw);
     view();
 }
 
-function confirmUser(user, pw){
-
+function confirmUser(_user, _pw)
+{
     let foundUser = false;
 
-    model.users.forEach(e => {
-        if (e.name == user && e.password == pw)
-            { model.app.loggedInUser = e; foundUser = true; }
+    model.users.forEach(user => {
+        if (user.name == _user && user.password == _pw)
+            { model.app.loggedInUser = user; foundUser = true; }
     });
 
     if (!foundUser) { console.log("Cant find user"); return Pages.LOGIN; }

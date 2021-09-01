@@ -19,11 +19,11 @@ const MenuType = {
 
 // DEBUG STUFF
 const debug = {
-      
+
       useLoginTesting: true,
       defaultUSER: "Admin",
       defaultPW: "admin",
-  
+
 }
 var chartDataTest;
 // MODEL
@@ -89,9 +89,11 @@ const model = {
         { weekId: 7, taskCount: 0 },
         { weekId: 8, taskCount: 0 },
     ],
-        /*------------------------------------------*
-         *           task = index starts 0          *
-        /*------------------------------------------*/
+
+
+   /*------------------------------------------*
+    *           task = index starts 0          *
+    *------------------------------------------*/
     tasks: [
       { id: 1,  weekIndex: 0,  taskInWeek: 0, progress: Progress.STARTED,        approved: false, student: 1 },
       { id: 2,  weekIndex: 0,  taskInWeek: 1, progress: Progress.NOTSTARTED,     approved: false, student: 1 },

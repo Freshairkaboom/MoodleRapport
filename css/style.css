@@ -459,28 +459,40 @@ hr {
 
 }
 
-.navigationContainer {
-  grid-area: 2 / 1 / 11 / 2;
-  margin-left: 1rem;
-  padding: 1rem;
-}
-.bodyContainer {
-  grid-area: 3 / 2 / 11 / 7;
-  text-align: center;
-  }
 .bannerContainer {
   grid-area: 1 / 1 / 2 / 7;
-  background-color: rgb(165, 173, 173);
+  background-color: rgb(50, 54, 54);
   padding-top: 5px;
   padding-bottom: 5px;
   position: absolute;
   top: 0;
   width: 100vW;
   text-align: right;
+  color: white;
   }
+.navigationContainer {
+  grid-area: 2 / 1 / 11 / 2;
+  margin-left: 1rem;
+  padding: 1rem;
+  background-color: rgb(223, 223, 223);
+  border-radius: 25px;
+  border: 2px solid black
+}
+.bodyContainer {
+  grid-area: 3 / 2 / 11 / 7;
+  text-align: center;
+  background-color: rgb(223, 223, 223);
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 80vW;
+  }
+
 .titleContainer {
   grid-area: 2 / 2 / 3 / 5;
-
+  background-color: rgb(223, 223, 223);
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 78vW;
   margin-left: 1rem;
   padding: 1rem;
 }

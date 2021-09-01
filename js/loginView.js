@@ -1,6 +1,7 @@
 function loginView() {
 
     document.getElementById('app').innerHTML = `
+    <div class="container">
 
     <input id="username" type="text" value="Username" onclick="this.value=''" onchange="model.inputs.loginPage.username=this.value"></input> Forgotten username or password?
     </br>
@@ -13,5 +14,7 @@ function loginView() {
 
    </br>
    Moodle Rapport very early access ${APP_VERSION_NUMBER}
+   </div>
+
    `;
 }
