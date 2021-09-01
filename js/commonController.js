@@ -22,9 +22,10 @@ function updateSelectedWeek(_week)
 }
 
 function title() {
+    let title = selectedWeek;
     let html = '';
     html += `
-        Tittel
+        ${title}
     `;
 
     return html;

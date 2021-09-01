@@ -40,6 +40,7 @@ const model = {
     PageStates: {
       menuType: MenuType.WEEKS,
       selectedWeek: 0,
+      selectedStudent: '',
     },
 
     // Input level
@@ -64,7 +65,7 @@ const model = {
 
     users: [
         { id: 0,  name: "Admin",      password: "admin", isAdmin: true,  isDisabled: false },
-        { id: 1,  name: "Lars",       password: "admin", isAdmin: false, isDisabled: false },
+        { id: 1,  name: "Lars",       password: "admin", isAdmin: false, isDisabled: true },
         { id: 2,  name: "Morten",     password: "admin", isAdmin: false, isDisabled: false },
         { id: 3,  name: "Daniel",     password: "admin", isAdmin: false, isDisabled: false },
         { id: 4,  name: "student4",   password: "admin", isAdmin: false, isDisabled: false },

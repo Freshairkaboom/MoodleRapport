@@ -17,10 +17,32 @@ function adminView() {
     </div>
 
     <div class="bodyContainer">
-        ${createChartContainers()}
+        ${body()}
     </div>
     </div>
     `;
 
-    fillPieCharts();
+    if (loggedInUserIsAdmin())
+        fillPieCharts();
+}
+
+
+function body()
+{
+    if (loggedInUserIsAdmin())
+        return createChartContainers();
+    else return "";
+}
+
+function loggedInUserIsAdmin()
+{
+    let foundAdmin = false;
+    model.users.forEach(user => {
+        if (model.app.loggedInUser.name == user.name)
+        {
+            if (user.isAdmin) foundAdmin = true;
+        }
+    })
+
+    return foundAdmin;
 }

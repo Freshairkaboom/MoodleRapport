@@ -26,7 +26,7 @@ function confirmUser(_user, _pw)
     let foundUser = false;
 
     model.users.forEach(user => {
-        if (user.name == _user && user.password == _pw)
+        if (user.name == _user && user.password == _pw && !user.isDisabled)
             { model.app.loggedInUser = user; foundUser = true; }
     });
 

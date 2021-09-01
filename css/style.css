@@ -469,7 +469,9 @@ hr {
   width: 100vW;
   text-align: right;
   color: white;
+  margin-bottom: 0.5rem;
   }
+
 .navigationContainer {
   grid-area: 2 / 1 / 11 / 2;
   margin-left: 1rem;
