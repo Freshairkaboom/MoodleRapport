@@ -487,6 +487,7 @@ hr {
   border-radius: 25px;
   border: 2px solid black;
   width: 80vW;
+  padding-bottom: 1rem;
   }
 
 .titleContainer {
