@@ -27,12 +27,7 @@ function adminView() {
 }
 
 
-function body()
-{
-    if (loggedInUserIsAdmin())
-        return createChartContainers();
-    else return "";
-}
+
 
 function loggedInUserIsAdmin()
 {

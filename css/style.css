@@ -503,3 +503,75 @@ hr {
 .week,.student:hover {
   cursor: pointer;
 }
+
+.links {
+  margin: 1rem;
+  text-align: left;
+}
+/* 
+table, th, td {
+  border: 1px solid black;
+}
+
+.tableContainer {
+    display: flex;
+
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectButtonContainer {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  left: 90%;
+}
+
+.tableContainer {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  padding: 10px;
+}
+
+.selectButton {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.cloud {
+  width: 2.5rem;
+  height: auto;
+  float: right;
+} */
+
+input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ffa500;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+

@@ -1,7 +1,14 @@
 // Clamp Implementation
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
+// DEBUG STUFF
+const debug = {
 
+    useLoginTesting: true,
+    defaultUSER: "Admin",
+    defaultPW: "admin",
+
+}
 
 function clearRandomData()
 {

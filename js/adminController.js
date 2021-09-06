@@ -2,15 +2,27 @@ function listStudents()
 {
     let list = '<ul>';
 
-    model.users.forEach(user => {
+    model.users.forEach(user =>
+    {
         if (!user.isAdmin && !user.isDisabled)
-            list += '<li>' + user.name +'</li>';
+        {            
+            list += `<li class="week" onclick="selectStudent(${user.id})">${user.name}</li>`;
+        }   
     })
 
     list += '</ul>';
 
     return list;
 }
+
+function selectStudent(user_ID)
+{
+    model.PageStates.selectedStudent = user_ID;
+    console.log("Clicked on student with ID: " + user_ID);
+
+    view();
+}
+
 
 // Admin controller
 function swapButtonName()
@@ -46,8 +58,6 @@ function navigationMenu() {
             `;
 
             break;
-
-
     }
 
     return html;

@@ -7,8 +7,12 @@ function loginView() {
     </br>
     <input id="password" type="text" value="Password" onclick="this.value=''" onchange="model.inputs.loginPage.password=this.value"></input> Cookies must be enabled in your browser
     </br>
+    ${model.inputs.loginPage.errorMessage}
+    </br>
     <button class="button-primary" onclick="logInUser()"> Login</button>
     </br>
+
+
     <input type="checkbox" id="loginCheckBox" onclick="rememberPassword()">Remember Password
    </hr>
 

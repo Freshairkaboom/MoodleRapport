@@ -17,8 +17,8 @@ function getChartData(_week, _student)
     // Set up data for the pie chart with values at zero
     let pieData = [
         { x: 'Ikke Startet', value: 0, normal: {fill: "#FF0000",}},
-        { x: 'Startet', value: 0, normal: {fill: "#FFFF00",}},
-        { x: 'Ferdig', value: 0, normal: {fill: "#32CD32",}}]
+        { x: 'Startet', value: 0, normal: {fill:      "#FFFF00",}},
+        { x: 'Ferdig', value: 0, normal: {fill:       "#32CD32",}}]
 
     // Grab all current tasks for the student and week passed into this function. Also grabbing the amount of tasks for the specific week.
     let tempData = getDataForStudent(week, student);
@@ -44,6 +44,8 @@ function getChartData(_week, _student)
 
 function fillPieCharts()
 {
+    if (!document.getElementById("chartParentContainer")) return;
+
     let week = model.PageStates.selectedWeek;
 
     model.users.forEach(user => {
@@ -73,7 +75,7 @@ function setChartProperties(newChart)
     // Set the properties
     newChart.legend(false);
     newChart.radius("40%");
-    newChart.background().stroke("1 red");
+    newChart.background().stroke("1 black");
     newChart.background().fill("#fff", 0);
 
     // Set the labels
@@ -86,13 +88,15 @@ function setChartProperties(newChart)
 
 /* DIV RELATED */
 function createChartContainers() {
-    let html = '';
+    let html = '<div id="chartParentContainer">';
 
     model.users.forEach(user => {
         if (!user.isAdmin && !user.isDisabled)
             html += ` <div id=${user.id.toString()} class="student" style="width: 20rem; height: 20rem;">${user.name}</div>`;
     })
 
+    
+    html += "</div>";
     return html;
 }
 

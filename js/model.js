@@ -1,31 +1,5 @@
-const APP_VERSION_NUMBER = "v0.0000000000007";
+const APP_VERSION_NUMBER = "v0.0000000000008 - Spaghetti";
 
-// ENUMS
-const Progress = {
-    NOTSTARTED: 0,
-    STARTED: 1,
-    FINISHED: 2,
-}
-
-const Pages = {
-  LOGIN: "loginPage",
-  USER: "userPage",
-  ADMIN: "adminPage",
-}
-const MenuType = {
-  STUDENT: 0,
-  WEEKS: 1,
-}
-
-// DEBUG STUFF
-const debug = {
-
-      useLoginTesting: true,
-      defaultUSER: "Admin",
-      defaultPW: "admin",
-
-}
-var chartDataTest;
 // MODEL
 const model = {
 
@@ -48,6 +22,7 @@ const model = {
         loginPage: {
             username: "",
             password: "",
+            errorMessage: ErrorMessages.NONE,
         },
         adminPage: {
             chatbox: "",
@@ -61,11 +36,11 @@ const model = {
 
     // Common data
 
-    totalUsersMade: 12,
+    totalUsersMade: 13,
 
     users: [
         { id: 0,  name: "Admin",      password: "admin", isAdmin: true,  isDisabled: false },
-        { id: 1,  name: "Lars",       password: "admin", isAdmin: false, isDisabled: true },
+        { id: 1,  name: "Lars",       password: "admin", isAdmin: false, isDisabled: false },
         { id: 2,  name: "Morten",     password: "admin", isAdmin: false, isDisabled: false },
         { id: 3,  name: "Daniel",     password: "admin", isAdmin: false, isDisabled: false },
         { id: 4,  name: "student4",   password: "admin", isAdmin: false, isDisabled: false },
@@ -77,18 +52,19 @@ const model = {
         { id: 10, name: "student10",  password: "admin", isAdmin: false, isDisabled: false },
         { id: 11, name: "student11",  password: "admin", isAdmin: false, isDisabled: false },
         { id: 12, name: "student12",  password: "admin", isAdmin: false, isDisabled: false },
+        { id: 13, name: "Disabled",   password: "admin", isAdmin: false, isDisabled: true },
     ],
 
 
     weeks: [
-        { weekId: 1, taskCount: 7 },
-        { weekId: 2, taskCount: 9 },
-        { weekId: 3, taskCount: 10 },
-        { weekId: 4, taskCount: 6 },
-        { weekId: 5, taskCount: 5 },
-        { weekId: 6, taskCount: 2 },
-        { weekId: 7, taskCount: 0 },
-        { weekId: 8, taskCount: 0 },
+        { weekId: 1, description: "Uke 1",  taskCount: 7 },
+        { weekId: 2, description: "Uke 2",  taskCount: 9 },
+        { weekId: 3, description: "Uke 3",  taskCount: 10 },
+        { weekId: 4, description: "Uke 4",  taskCount: 6 },
+        { weekId: 5, description: "Uke 5",  taskCount: 5 },
+        { weekId: 6, description: "Uke 6",  taskCount: 2 },
+        { weekId: 7, description: "Bonus-Pensum", taskCount: 25 },
+        { weekId: 8, description: "N/A",  taskCount: 0 },
     ],
 
 
