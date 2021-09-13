@@ -508,7 +508,7 @@ hr {
   margin: 1rem;
   text-align: left;
 }
-/* 
+/*
 table, th, td {
   border: 1px solid black;
 }
@@ -575,3 +575,10 @@ input[type='radio']:checked:after {
   border: 2px solid white;
 }
 
+.option-a {
+  background-color:rgb(236, 127, 19);
+  color: white;
+  }
+  .option-b {
+  background-color:rgb(223, 223, 223);
+  }

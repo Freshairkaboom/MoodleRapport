@@ -12,6 +12,7 @@ const debug = {
 
 function clearRandomData()
 {
+    model.totalTasksMade = 0;
     model.tasks = [];
     view();
 }
@@ -53,11 +54,15 @@ function generateRandomData()
 
         // If not, add the task to the list of tasks
         if (duplicateTasks < taskCount && taskCount != 0)
+        {
             model.tasks.push(randomizedTask);
+        }
 
         i++;
         amountToGenerate--;
     }
+
+    model.totalTasksMade = model.tasks.length;
 
     view();
 }

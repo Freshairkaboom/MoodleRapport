@@ -95,7 +95,7 @@ function createChartContainers() {
             html += ` <div id=${user.id.toString()} class="student" style="width: 20rem; height: 20rem;">${user.name}</div>`;
     })
 
-    
+
     html += "</div>";
     return html;
 }

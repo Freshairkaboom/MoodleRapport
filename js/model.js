@@ -1,4 +1,4 @@
-const APP_VERSION_NUMBER = "v0.0000000000008 - Spaghetti";
+const APP_VERSION_NUMBER = "v0.0000000000009 - Looptiloops";
 
 // MODEL
 const model = {
@@ -36,7 +36,7 @@ const model = {
 
     // Common data
 
-    totalUsersMade: 13,
+    totalUsersMade: 14,
 
     users: [
         { id: 0,  name: "Admin",      password: "admin", isAdmin: true,  isDisabled: false },
@@ -71,6 +71,9 @@ const model = {
    /*------------------------------------------*
     *           task = index starts 0          *
     *------------------------------------------*/
+
+    totalTasksMade: 12,
+
     tasks: [
       { id: 1,  weekIndex: 0,  taskInWeek: 0, progress: Progress.STARTED,        approved: false, student: 1 },
       { id: 2,  weekIndex: 0,  taskInWeek: 1, progress: Progress.NOTSTARTED,     approved: false, student: 1 },
@@ -84,6 +87,9 @@ const model = {
       { id: 10, weekIndex: 1,  taskInWeek: 4, progress: Progress.FINISHED,       approved: false, student: 2 },
       { id: 11, weekIndex: 2,  taskInWeek: 1, progress: Progress.STARTED,        approved: false, student: 2 },
       { id: 12, weekIndex: 2,  taskInWeek: 2, progress: Progress.FINISHED,       approved: false, student: 2 },
+    ],
+
+    displayedTasks: [
     ],
 
 

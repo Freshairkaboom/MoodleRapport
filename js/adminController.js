@@ -5,9 +5,9 @@ function listStudents()
     model.users.forEach(user =>
     {
         if (!user.isAdmin && !user.isDisabled)
-        {            
+        {
             list += `<li class="week" onclick="selectStudent(${user.id})">${user.name}</li>`;
-        }   
+        }
     })
 
     list += '</ul>';
@@ -23,8 +23,6 @@ function selectStudent(user_ID)
     view();
 }
 
-
-// Admin controller
 function swapButtonName()
 {
     if (model.PageStates.menuType == MenuType.STUDENT) return "Uker";
@@ -58,6 +56,22 @@ function navigationMenu() {
             `;
 
             break;
+    }
+
+    return html;
+}
+
+function addAdminColor(progress)
+{
+    let html = "";
+    let size = 20;
+    let color = getMatchingColor(progress);
+
+    if (loggedInUserIsAdmin())
+    {
+        html += `<svg width="${size}" height="${size}">
+        <rect width="${size}" height="${size}" style="fill:${color};stroke-width:3;stroke:rgb(100,0,100)" />
+        </svg>`;
     }
 
     return html;
