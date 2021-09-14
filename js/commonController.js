@@ -87,14 +87,17 @@ function body()
                 break;
         }
     }
-    else return createAssignmentContainers();
+    else
+    {
+        return createAssignmentContainers();
+    }
 }
 
-function createTaskList(taskData) {
+function createTaskList() {
 
     let html = "";
 
-    html += createAssignmentTable(taskData);
+    html += createAssignmentTable();
 
     return html;
 }
@@ -104,26 +107,13 @@ function createAssignmentContainers()
 
     let html = '';
 
+    let _week = model.PageStates.selectedWeek;
+    let _student = model.app.loggedInUser.id;
+
+    setDisplayedTasks(_week, _student);
 
     html += createWeekButtons();
     html += createAssignmentTable();
-    /*
-    model.assignments.title
-    model.assignments.url
-
-    TODO:
-    * Check currently selected week.
-
-    * Loop through all tasks for users and look for tasks matching currently selected week.
-
-    * Create a list of all tasks for the matching week.
-
-    * Return each element on the list as HTML
-
-    */
-    //let assignment = '<div class="links"><ul>';
-
-    //let assignment =
 
     return html;
 }
@@ -142,7 +132,7 @@ model.weeks.forEach(week =>
 
 }
 
-function createAssignmentTable(taskData)
+function createAssignmentTable()
 {
 
     let _selectedWeek = model.PageStates.selectedWeek;
@@ -167,53 +157,115 @@ function createAssignmentTable(taskData)
         let taskName = listOfTasksThisWeek[i].title.toString();
 
         let progress = Progress.NOTSTARTED;
-        if (taskData != null)
-        {
-            if (taskData[i] != null)
-            progress = taskData[i].progress;
-        }
+
+        let currentTaskId = model.displayedTaskId[i];
+
+        model.tasks.forEach(task => {
+            if (task.id == currentTaskId)
+                progress = task.progress;
+        })
 
 
-        tableHTML += `
-
-        <tr>
-          <th>
-          ${getButtonDivs(i)}
-          </th>
-          <th>${addAdminColor(progress)}<span><a href="${taskURL}">${taskName}</a></span></th>
-        </tr>`
+        tableHTML += `<tr>
+        <th>
+        ${getButtonDivs(i)}
+        ${addAdminColor(progress)}<span><a href="${taskURL}">${taskName}</a></span></th>
+        </tr>
+       `
     }
 
     return tableHTML;
 }
 
+
+function addApprovedColors(index)
+{
+    let html = "";
+    let size = 20;
+    let color;
+
+    let _task = findTaskByIndex(index);
+
+    if (_task == null) return "Cant find task";
+
+    if (_task.approved) color = Color.white;
+    else color = Color.black;
+
+    html += `<svg width="${size}" height="${size}">
+    <rect width="${size}" height="${size}" style="fill:${color};stroke-width:3;stroke:rgb(100,0,100)" />
+    </svg>`;
+
+    return html;
+}
+
 function approveTask(index)
 {
+    if (model.displayedTaskId.length <= 0) return;
 
-    if (model.displayedTasks.length <= 0) return;
+    let taskId = model.displayedTaskId[index];
 
-    model.displayedTasks[index].approved = !model.displayedTasks[index].approved;
-
-
-    console.log("Exception in approveTask() - Not implemented yet");
+    model.tasks.forEach(task => {
+            if (task.id == taskId)
+            {
+                task.approved = !task.approved;
+            }
+    })
 }
 
 function getButtonDivs(index)
 {
     let html = "";
 
+
     if (!loggedInUserIsAdmin())
     {
+
+
         html = `
-        <input type="radio" class="red" name="${index}" value="radio" onClick="changeColour('r', ${index}, ${Progress.NOTSTARTED})">
-        <input type="radio" class="yellow" name="${index}" value="radio" onClick="changeColour('g', ${index}, ${Progress.STARTED})">
-        <input type="radio" class="green" name="${index}" value="radio" onClick="changeColour('b', ${index}, ${Progress.FINISHED})">
+        <input type="radio" ${getRadioStatus(index, Progress.NOTSTARTED)} class="red" name="${index}" value="radio" onClick="changeColour('red', ${index}, ${Progress.NOTSTARTED})">
+        <input type="radio" ${getRadioStatus(index, Progress.STARTED)} class="yellow" name="${index}" value="radio" onClick="changeColour('yellow', ${index}, ${Progress.STARTED})">
+        <input type="radio" ${getRadioStatus(index, Progress.FINISHED)} class="green" name="${index}" value="radio" onClick="changeColour('green', ${index}, ${Progress.FINISHED})">
+        ${addApprovedColors(index)}
         `
     }
     else
     {
-        html = `<input type="checkbox" name="Approved" onClick="approveTask(${index})">`
+        html = `<input type="checkbox" ${getApprovalStatus(index)} name="Approved" onClick="approveTask(${index})">Godkjenn oppgave`
     }
 
+    //${getApprovalStatus()}
     return html;
+}
+
+function getRadioStatus(index, progress)
+{
+    let _task = findTaskByIndex(index);
+
+    if (_task == null) return "";
+
+    if (_task.progress == progress) return "checked";
+    else return "";
+}
+
+function getApprovalStatus(index)
+{
+    let task = findTaskByIndex(index);
+
+    if (task == null) return "";
+
+    if (task.approved) return "checked";
+    else return "";
+}
+
+function findTaskByIndex(index)
+{
+    let _task;
+    let taskId = model.displayedTaskId[index];
+
+    model.tasks.forEach(task => {
+            if (task.id == taskId)
+                _task = task;
+    });
+
+    return _task;
 }

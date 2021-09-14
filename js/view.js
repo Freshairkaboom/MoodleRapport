@@ -35,6 +35,7 @@ function showApprovedButtons()
 
 view();
 logInUser(); // CALLING FOR DEVELOPMENT_TESTING
+generateRandomTasks();
 //generateRandomData(); // DEVELOPER_FUNCTION
 
 function view() {
@@ -61,9 +62,15 @@ function view() {
 
 
 
-function changeColour(color, index, task)
+function changeColour(color, index, _progress)
 {
-    console.log("Color: " + color + " Index: " + index + " Task: " + task);
+    let task = findTaskByIndex(index);
+
+    if (task == null) return;
+
+    task.progress = _progress;
+
+    console.log("Color: " + color + " Index: " + index + " Task: " + _progress);
     console.log("Exception - Not Implemented yet");
 }
 

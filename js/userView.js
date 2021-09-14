@@ -1,5 +1,6 @@
 function userView() {
 
+    let size = 20;
     model.PageStates.menuType = MenuType.WEEKS;
 
     document.getElementById('app').innerHTML = `
@@ -11,15 +12,36 @@ function userView() {
     </div>
 
     <div class="navigationContainer">
+    Modul 1<button class="button-primary2">Navigasjon</button>
         ${navigationMenu()}
         </div>
 
     <div class="titleContainer">
-        ${title()}
+     Velkommen! Her finner du oppgavene for ${title()}
+     <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-for-mobile-apps-2/512/Settings_black-512.png" width="20px" height="20px" onclick="toggleColorBlindMode()">
     </div>
 
     <div class="bodyContainer">
         ${body()}
+        <br>
+            <svg width="${size}" height="${size}">
+            <rect width="${size}" height="${size}" style="fill:${Color.red};stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg> = Ikke Startet oppgaven.
+
+            <svg width="${size}" height="${size}">
+            <rect width="${size}" height="${size}" style="fill:${Color.yellow};stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg> = Startet oppgaven.
+
+            <svg width="${size}" height="${size}">
+            <rect width="${size}" height="${size}" style="fill:${Color.green};stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg> = Ferdig med oppgaven.
+            <svg width="${size}" height="${size}">
+            <rect width="${size}" height="${size}" style="fill:${Color.black};stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg> = Oppgaven er ikke godkjent.
+            <svg width="${size}" height="${size}">
+            <rect width="${size}" height="${size}" style="fill:${Color.white};stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg> = Oppgaven er godkjent.
+
     </div>
     </div>
     `;
@@ -37,96 +59,49 @@ function createStudentPage()
     return; }
 
 
-    model.displayedTasks = getDisplayedTasks(_week, _student);
+    setDisplayedTasks(_week, _student);
 
-    // model.tasks.forEach(task => {
-    //     if(task.student == _student && task.weekIndex == _week) {
-    //         _data.push(task);
-    //     }
-    //});
 
     let html = createWeekButtons();
-    html += createTaskList(model.displayedTasks);
+    html += createTaskList();
 
     if (html != "")
     return html
     else return "";
 }
 
-function getDisplayedTasks(week, _student)
+function setDisplayedTasks(week, _student)
 {
     let _data = [];
     let tasksThisWeek = getTaskCountForWeek(week);
 
 
-    // Generate empty list of task objects for this week and student
-    for (i = 0; i < tasksThisWeek; i++)
+    model.displayedTaskId = [];
+
+    model.tasks.forEach( task => {
+        if (task.weekIndex == week && task.student ==  _student)
+        {
+            if (!model.displayedTaskId.includes(task.id))
+                model.displayedTaskId.push(task.id);
+        }
+    })
+
+    let _taskInWeek = 0;
+    if (model.displayedTaskId.length < tasksThisWeek)
     {
-        let newTask = { id: -1,  weekIndex: week,  taskInWeek: i, progress: Progress.NOTSTARTED, approved: false, student: _student}
-        _data.push(newTask);
+        for (i = 0; i < tasksThisWeek; i++)
+        {
+
+
+            if (!model.displayedTaskId.includes(i+1))
+            {
+                model.totalTasksMade++;
+                let newTask = { id: model.totalTasksMade,  weekIndex: week,  taskInWeek: i, progress: Progress.NOTSTARTED, approved: false, student: _student };
+                model.displayedTaskId.push(newTask.id);
+                model.tasks.push(newTask);
+            }
+        }
     }
 
-    // console.log("DATA");
-    // console.log(_data);
-    // console.log("_________________________________");
-
-    // Loop through all existing tasks and populate the temporary tasks with the proper information.
-    model.tasks.forEach(task => {
-
-        _data.forEach( tempTask =>
-        {
-            if (task.weekIndex == tempTask.weekIndex && task.taskInWeek == tempTask.taskInWeek && task.student ==  tempTask.student)
-            {
-                tempTask.id = task.id;
-                tempTask.progress = task.progress;
-                tempTask.approved = task.approved;
-            }
-        })
-    })
-
-    // Make sure to give each new task a new unique ID when we push them back into the model.tasks Array
-
-    model.displayedTasks = _data;
-
-    addDisplayedTasksToTasks(); // Call this when information has been changed. Then call getDisplayedTasks again to refresh.
-
-
-    return model.displayedTasks;
-}
-
-function addDisplayedTasksToTasks()
-{
-    let taskID = model.totalTasksMade;
-
-    model.displayedTasks.forEach(task =>
-        {
-            if (task.id == -1)
-            {
-                taskID++;
-                task.id = taskID;
-            }
-        })
-
-    model.totalTasksMade = taskID;
-
-    // console.log("Displayed Tasks");
-    // console.log(model.displayedTasks);
-    // console.log("_________________________________");
-
-
-    model.displayedTasks.forEach( dispTask =>
-    {
-        model.tasks.forEach(task => {
-            if (task.id == dispTask.id)
-            {
-                task = dispTask;
-            }
-            else
-            {
-                model.tasks.push(dispTask);
-            }
-        })
-    })
-
-    model.displayedTasks = [];
+    model.displayedTaskId = model.displayedTaskId.sort((a, b) => a - b);
 }

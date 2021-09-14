@@ -1,4 +1,5 @@
 function adminView() {
+    let size = 20;
     document.getElementById('app').innerHTML = `
     <div class="pageContainer">
 
@@ -14,10 +15,12 @@ function adminView() {
 
     <div class="titleContainer">
         ${title()}
+        <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-for-mobile-apps-2/512/Settings_black-512.png" width="20px" height="20px" onclick="toggleColorBlindMode()">
     </div>
 
     <div class="bodyContainer">
         ${body()}
+
     </div>
     </div>
     `;

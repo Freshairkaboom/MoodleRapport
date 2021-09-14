@@ -16,9 +16,9 @@ function getChartData(_week, _student)
 
     // Set up data for the pie chart with values at zero
     let pieData = [
-        { x: 'Ikke Startet', value: 0, normal: {fill: "#FF0000",}},
-        { x: 'Startet', value: 0, normal: {fill:      "#FFFF00",}},
-        { x: 'Ferdig', value: 0, normal: {fill:       "#32CD32",}}]
+        { x: 'Ikke Startet', value: 0, normal: {fill: Color.red,}},
+        { x: 'Startet', value: 0, normal: {fill:      Color.yellow,}},
+        { x: 'Ferdig', value: 0, normal: {fill:       Color.green,}}]
 
     // Grab all current tasks for the student and week passed into this function. Also grabbing the amount of tasks for the specific week.
     let tempData = getDataForStudent(week, student);

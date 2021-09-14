@@ -1,4 +1,4 @@
-const APP_VERSION_NUMBER = "v0.0000000000009 - Looptiloops";
+const APP_VERSION_NUMBER = "v0.0000000000010 - Tasksandbuttons";
 
 // MODEL
 const model = {
@@ -76,9 +76,9 @@ const model = {
 
     tasks: [
       { id: 1,  weekIndex: 0,  taskInWeek: 0, progress: Progress.STARTED,        approved: false, student: 1 },
-      { id: 2,  weekIndex: 0,  taskInWeek: 1, progress: Progress.NOTSTARTED,     approved: false, student: 1 },
+      { id: 2,  weekIndex: 0,  taskInWeek: 1, progress: Progress.NOTSTARTED,     approved: true, student: 1 },
       { id: 3,  weekIndex: 0,  taskInWeek: 3, progress: Progress.STARTED,        approved: false, student: 1 },
-      { id: 4,  weekIndex: 0,  taskInWeek: 0, progress: Progress.STARTED,        approved: false, student: 2 },
+      { id: 4,  weekIndex: 0,  taskInWeek: 0, progress: Progress.STARTED,        approved: true, student: 2 },
       { id: 5,  weekIndex: 0,  taskInWeek: 4, progress: Progress.FINISHED,       approved: false, student: 1 },
       { id: 6,  weekIndex: 0,  taskInWeek: 5, progress: Progress.FINISHED,       approved: false, student: 1 },
       { id: 7,  weekIndex: 1,  taskInWeek: 1, progress: Progress.FINISHED,       approved: false, student: 2 },
@@ -89,8 +89,9 @@ const model = {
       { id: 12, weekIndex: 2,  taskInWeek: 2, progress: Progress.FINISHED,       approved: false, student: 2 },
     ],
 
-    displayedTasks: [
-    ],
+
+
+    displayedTaskId: [], // DECREPATED
 
 
 
