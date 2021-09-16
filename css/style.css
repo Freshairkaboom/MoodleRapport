@@ -504,6 +504,20 @@ hr {
   top: 130px;
   left: 200px;
   }
+.chatContainer {
+  /* grid-area: 3 / 2 / 11 / 7; */
+  text-align: center;
+  background-color: rgb(223, 223, 223);
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 40vW;
+  padding-bottom: 1rem;
+
+  position: absolute;
+  bottom: 0px;
+  left: 550px;
+
+  }
 
 .titleContainer {
   /* grid-area: 2 / 2 / 3 / 5; */
@@ -579,4 +593,23 @@ body {
   /* background-image: url(https://t4.ftcdn.net/jpg/01/83/31/83/240_F_183318350_SUsz170apwdJGq5dzXCekuadtlnENpgg.jpg); */
   background-size: 100%;
   background-color: black;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

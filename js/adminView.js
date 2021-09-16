@@ -22,16 +22,41 @@ function adminView() {
         ${body()}
 
     </div>
+    <div class="chatContainer" width="200px" height="200px">
+     ${chatBox()}
+     </br>
+     <input id="chatInput" type="text" value="${model.inputs.defaultChatMessage}"  type="text" onclick="this.value=''" oninput="model.inputs.tempChatMessage=this.value"></input>
+     <button class="button-primary" onclick="send()">Send</button>
+    </div>
     </div>
     `;
 
     if (loggedInUserIsAdmin())
         fillPieCharts();
+
+
+
+    let input = document.getElementById("chatInput");
+
+    input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            send();
+        };
+    });
+
 }
 
-
-
-
+/*{ <input id="myInput" value="Some text..">
+<button id="myBtn" onclick="javascript:alert('Hello World!')">Button</button>
+var input = document.getElementById("myInput");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("myBtn").click();
+  }
+});
+*/
 function loggedInUserIsAdmin()
 {
     let foundAdmin = false;

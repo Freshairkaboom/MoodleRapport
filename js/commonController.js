@@ -114,6 +114,7 @@ function createAssignmentContainers()
 
     html += createWeekButtons();
     html += createAssignmentTable();
+    // html += createChatBox();
 
     return html;
 }
@@ -171,6 +172,7 @@ function createAssignmentTable()
         ${getButtonDivs(i)}
         ${addAdminColor(progress)}<span><a href="${taskURL}">${taskName}</a></span></th>
         </tr>
+
        `
     }
 

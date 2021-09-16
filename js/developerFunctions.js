@@ -5,7 +5,7 @@ const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 const debug = {
 
     useLoginTesting: true,
-    defaultUSER: "Lars",
+    defaultUSER: "Admin",
     defaultPW: "admin",
 
 }
@@ -27,8 +27,8 @@ function generateRandomTasks()
     let progressLength = 3; //Enum Progress has 3 properties
 
     let students = 0;
-    model.users.forEach(x => {
-        if (!x.isAdmin && !x.isDisabled)
+    model.users.forEach(task => {
+        if (!task.isAdmin && !task.isDisabled)
             students++
     });
 
