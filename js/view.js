@@ -60,8 +60,13 @@ function view() {
 
 function chatBox()
 {
+    console.log("chatBox is being called()");
 
-    if(!model.PageStates.selectedStudent) return;
+    if (loggedInUserIsAdmin())
+        if(!model.PageStates.selectedStudent) return;
+    else
+        if (model.app.loggedInUser == "") return;
+
 
     let userId;
 
@@ -76,6 +81,10 @@ function chatBox()
             userId = model.app.loggedInUser.id;
             break;
     }
+
+    console.log("UserID: " + userId);
+
+    console.log(getChatData(userId));
 
     return getChatData(userId);
 }
@@ -119,17 +128,18 @@ function getChatData(_userId) {
 function drawChatBox(chatData){
     let html = ``;
     let isAdmin = loggedInUserIsAdmin();
+
     let _length = 5;
+    //let ms = Math.max(0, chatData.length - _length);
+    let ms = 0;
 
-    let ms = Math.max(0, chatData.length - _length);
-
-    for (i = ms; i < chatData.length; i++)
+    for (i = chatData.length-1; i >= 0; i--)
     {
         if (!chatData[i].isVisible)
         {
-            if (isAdmin) html += "(" + chatData[i].order + ") (hidden) " + getUserNameFromId(chatData[i].whoCommented) + chatData[i].msg + `<br>`;
+            if (isAdmin) html += "(" + chatData[i].order + ") (hidden) " + '[' + chatData[i].whoCommented + ']' + ' ' + chatData[i].msg + `<br>`;
         }
-        else html += "(" + chatData[i].order + ") " +  chatData[i].msg + `<br>`;
+        else html += "(" + chatData[i].order + ") "  + '[' + chatData[i].whoCommented + ']' + ' ' + chatData[i].msg + `<br>`;
     }
 
     return html;
@@ -137,9 +147,7 @@ function drawChatBox(chatData){
 
 function getUserNameFromId(whoCommented)
 {
-    //whoCommented is the ID of the user
-
-    return "Name of commenter";
+    return model.app.loggedInUser.name
 }
 
 function send(){
@@ -151,7 +159,7 @@ function send(){
     let student = loggedInUserIsAdmin() ? model.PageStates.selectedStudent : model.app.loggedInUser.id;
     let _week = model.PageStates.selectedWeek;
 
-    let isTrue = true;
+    let isTrue = isCheckedTrue();
 
     let html = ``;
 
@@ -168,6 +176,14 @@ function send(){
 
     model.inputs.tempChatMessage = model.inputs.defaultChatMessage;
 }
+
+function isCheckedTrue() {
+    
+
+    
+    return true;
+}
+
 /*
 <div id= "genre">
 What do you bust a move to?

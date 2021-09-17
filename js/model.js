@@ -18,11 +18,12 @@ const model = {
 
   chatMsg: [
     { studentId: 1, msgs: [
-      { week: 0, order: 0, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
-      { week: 0, order: 1, whoCommented: 0, msg: "Veeeeel...", isVisible: false},
-      { week: 0, order: 4, whoCommented: 0, msg: "Sjakk er gøy", isVisible: false},
-      { week: 0, order: 2, whoCommented: 0, msg: "Daniel er kul", isVisible: false},
-      { week: 0, order: 3, whoCommented: 0, msg: "Nå eru snart ute", isVisible: false},
+      { week: 0, order: 1, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
+      { week: 0, order: 2, whoCommented: 0, msg: "Veeeeel...", isVisible: false},
+      { week: 0, order: 3, whoCommented: 0, msg: "Sjakk er gøy", isVisible: false},
+      { week: 0, order: 4, whoCommented: 0, msg: "Daniel er kul", isVisible: false},
+      { week: 0, order: 5, whoCommented: 0, msg: "Nå eru snart ute", isVisible: false},
+      
    ],},
     { studentId: 2, msgs: [
       { week: 0, order: 0, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
@@ -40,7 +41,13 @@ const model = {
       { week: 0, order: 0, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
       { week: 0, order: 1, whoCommented: 0, Msg: "Veeeeel...", isVisible: false},
     ],},
-    { studentId: 6, msgs: [],},
+    { studentId: 6,  msgs: [],},
+    { studentId: 7,  msgs: [],},
+    { studentId: 8,  msgs: [],},
+    { studentId: 9,  msgs: [],},
+    { studentId: 10, msgs: [],},
+    { studentId: 11, msgs: [],},
+    { studentId: 12, msgs: [],},
   ],
 
   // App level
@@ -108,7 +115,7 @@ const model = {
     { weekId: 4, description: "Uke 4", taskCount: 6 },
     { weekId: 5, description: "Uke 5", taskCount: 5 },
     { weekId: 6, description: "Uke 6", taskCount: 2 },
-    { weekId: 7, description: "Bonus-Pensum", taskCount: 25 },
+    { weekId: 7, description: "Bonus-Pensum", taskCount: 24 },
     { weekId: 8, description: "N/A", taskCount: 0 },
   ],
 
@@ -309,8 +316,256 @@ const model = {
       title: 'oppgaver i code2flow',
       url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=370',
     },
+    /*-----------------------------*
+     *            WEEK 4           *
+    /*-----------------------------*/
+    {
+      weekIndex: 3,
+      taskInWeek: 0,
+      title: 'Introduksjon til unit testing',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=470',
+    },
+    {
+      weekIndex: 3,
+      taskInWeek: 1,
+      title: 'Oppgave: formatering av tekst',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=471',
+    },
+    {
+      weekIndex: 3,
+      taskInWeek: 2,
+      title: 'Oppgave: gjenkjenne epostadresse',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=472',
+    },
+    {
+      weekIndex: 3,
+      taskInWeek: 3,
+      title: 'Enhetstesting av controller-funksjonene',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=484',
+    },
+    {
+      weekIndex: 3,
+      taskInWeek: 4,
+      title: 'Refactoring - og kunsten å dele opp koden i korte og pene funksjoner',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=473',
+    },
+    {
+      weekIndex: 3,
+      taskInWeek: 5,
+      title: 'Unit testing av controller-funksjonene i clicker-gamet fra tidligere',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=511',
+    },
+    /*-----------------------------*
+     *            WEEK 5           *
+    /*-----------------------------*/
+    {
+      weekIndex: 4,
+      taskInWeek: 0,
+      title: 'Undervisning - Løkker og tabeller Page',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=389',
+    },
+    {
+      weekIndex: 4,
+      taskInWeek: 1,
+      title: 'Oppgave - Gangetabellen',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=463',
+    },
+    {
+      weekIndex: 4,
+      taskInWeek: 2,
+      title: 'Oppgave - Tre på rad med løsning',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=390',
+    },
+    {
+      weekIndex: 4,
+      taskInWeek: 3,
+      title: 'Oppgave - Tallpuslespill',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=430',
+    },
+    {
+      weekIndex: 4,
+      taskInWeek: 4,
+      title: 'Oppgave - Reaksjonstid',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=491',
+    },
+    /*-----------------------------*
+     *            WEEK 6           *
+    /*-----------------------------*/
+    {
+      weekIndex: 5,
+      taskInWeek: 0,
+      title: 'Enhetstesting av controller-funksjoner',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=486',
+    },
+    {
+      weekIndex: 5,
+      taskInWeek: 1,
+      title: 'Obligatorisk oppgave',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=459',
+    },
+    /*-----------------------------*
+     *        BONUS-PENSUM         *
+    /*-----------------------------*/
+    {
+      weekIndex: 6,
+      taskInWeek: 0,
+      title: 'Gjennomgang av problemløsningsteknikkene fra "Koding for alle i JavaScript"',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=512',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 1,
+      title: 'Debugging i nettleser og console.log',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=523',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 2,
+      title: 'Callbacks, promises, async og await',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=404',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 3,
+      title: 'Firestore intro',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=405',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 4,
+      title: 'Oppgaver',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=406',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 5,
+      title: 'Oppgave - Vinlotterix',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=434',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 6,
+      title: 'Undervisning - Introduksjon til eksempelet',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=407',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 7,
+      title: 'Undervisning - Forbedret og mer objektorientert versjon av svingende tekst',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=408',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 8,
+      title: 'Oppgave - Tilfeldige firkanter',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=409',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 9,
+      title: 'Oppgave - Tre på rad revisited',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=410',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 10,
+      title: 'Introduksjon til web-komponenter',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=526',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 11,
+      title: 'Introduksjon til SPA-rammeverk og Vue.js',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=411',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 12,
+      title: 'Tutorials',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=412',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 13,
+      title: 'Eksempel - med og uten komponent',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=413',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 14,
+      title: 'Vue CLI',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=414',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 15,
+      title: 'Vue - med events og properties',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=426',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 16,
+      title: 'Oppgave',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=429',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 17,
+      title: 'Oppgave',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=433',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 18,
+      title: 'Vuex',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=464',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 19,
+      title: 'Bonusmateriale',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=440',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 20,
+      title: 'Oppgave Yatzy del 1 - Model og View for scoreboard',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=415',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 21,
+      title: 'Oppgave Yazty del 2 - Model og View for fem terninger',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=416',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 22,
+      title: 'Oppgave Yatzy del 3 - Plassere resultat på scoreboard',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=417',
+    },
+    {
+      weekIndex: 6,
+      taskInWeek: 23,
+      title: 'Idé til oppgave',
+      url: 'https://getacademy.moodlecloud.com/mod/page/view.php?id=418',
+    },
   ],
 
+  
+/*
+
+  
+  
+  
+  
+  
+
+*/
+
+
+
+  
   /*
   function getAssignment(weekIndex, taskInWeek) {
       for (let assignment og model.assignments) {

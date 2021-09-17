@@ -22,20 +22,15 @@ function adminView() {
         ${body()}
 
     </div>
-    <div class="chatContainer" width="200px" height="200px">
-     ${chatBox()}
-     </br>
-     <input id="chatInput" type="text" value="${model.inputs.defaultChatMessage}"  type="text" onclick="this.value=''" oninput="model.inputs.tempChatMessage=this.value"></input>
-     <button class="button-primary" onclick="send()">Send</button>
-    </div>
+     ${displayChatContainer()}
     </div>
     `;
 
     if (loggedInUserIsAdmin())
         fillPieCharts();
-
-
-
+    
+    
+    if(model.PageStates.selectedStudent == '') return;
     let input = document.getElementById("chatInput");
 
     input.addEventListener("keyup", function(event) {
@@ -45,6 +40,24 @@ function adminView() {
         };
     });
 
+}
+
+function displayChatContainer() {
+    
+    let html = `
+    <div class="chatContainer" max-width="200px" max-height="200px">
+    <input id="chatInput" type="text" value="${model.inputs.defaultChatMessage}"  type="text" onclick="this.value=''" oninput="model.inputs.tempChatMessage=this.value"></input>
+    <button class="button-primary" onclick="send()">Send</button>
+    <input type="checkbox" ${isVisible()} name="Should message be visible?" onclick="isVisible()">Should task be visible?</input>
+    </br>
+     ${chatBox()}
+    
+    </div>`;
+
+    if(model.PageStates.selectedStudent == '') return '';
+
+    else return html;
+    
 }
 
 /*{ <input id="myInput" value="Some text..">

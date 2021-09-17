@@ -44,12 +44,12 @@ function userView() {
 
     </div>
     <div class="chatContainer">
-     ${chatBox()}
-     </br>
-     <input type="text" value="${model.inputs.defaultChatMessage}" type="text" onclick="this.value=''" oninput="model.inputs.tempChatMessage=this.value"></input>
-     <button class="button-primary" onclick="send()">Send</button>
-
-
+    <input type="text" value="${model.inputs.defaultChatMessage}" type="text" onclick="this.value=''" oninput="model.inputs.tempChatMessage=this.value"></input>
+    <button class="button-primary" onclick="send()">Send</button>
+    </br>
+    ${chatBox()}
+     
+     
     </div>
     </div>
     `;
