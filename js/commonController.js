@@ -5,7 +5,7 @@ function listWeeks()
     model.weeks.forEach(week =>
     {
         let _weekText = `${week.description}`;
-        if (week.weekId-1 == model.PageStates.selectedWeek) _weekText = `=> ${week.description} <=`;
+        if (week.weekId-1 == model.PageStates.selectedWeek) _weekText = `<strong> ${week.description} </strong>`;
 
         list += `<li class="week" onclick="updateSelectedWeek(${week.weekId})">` + `${_weekText} ` + `</li>`;
     })
@@ -77,13 +77,13 @@ function body()
         {
             case "":
 
-                console.log("Creating Chart Containers");
+
                 return createChartContainers();
 
                 break;
 
             default:
-                return createStudentPage(); //createStudentPage();
+                return createStudentPage();
                 break;
         }
     }
@@ -173,10 +173,11 @@ function createAssignmentTable()
         ${addAdminColor(progress)}<span><a href="${taskURL}">${taskName}</a></span></th>
         </tr>
 
+
        `
     }
 
-    return tableHTML;
+    return tableHTML + `</table>`;
 }
 
 

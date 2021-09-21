@@ -6,7 +6,10 @@ function listStudents()
     {
         if (!user.isAdmin && !user.isDisabled)
         {
-            list += `<li class="week" onclick="selectStudent(${user.id})">${user.name}</li>`;
+            let _userText = `${user.name}`;
+            if (user.id == model.PageStates.selectedStudent) _userText = `<strong> ${user.name} </strong>`;
+
+            list += `<li class="week" onclick="selectStudent(${user.id})">${_userText}</li>`;
         }
     })
 
@@ -18,7 +21,6 @@ function listStudents()
 function selectStudent(user_ID)
 {
     model.PageStates.selectedStudent = user_ID;
-    console.log("Clicked on student with ID: " + user_ID);
 
     view();
 }

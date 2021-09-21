@@ -3,33 +3,39 @@ function adminView() {
     document.getElementById('app').innerHTML = `
     <div class="pageContainer">
 
-    <div class="bannerContainer">
-    ${model.app.loggedInUser.name}
-    <button class="button-primary" onclick="logOutUser()"> Log out</button>
-    </div>
-
-    <div class="navigationContainer">
-        Modul 1<button class="button-primary" onclick="swapMenuItem()">${swapButtonName()}</button>
-        ${navigationMenu()}
+        <div class="bannerContainer">
+            ${model.app.loggedInUser.name}
+            <button class="button-primary" onclick="logOutUser()"> Log out</button>
         </div>
 
-    <div class="titleContainer">
-        ${title()}
-        <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-for-mobile-apps-2/512/Settings_black-512.png" width="20px" height="20px" onclick="toggleColorBlindMode()">
-    </div>
+        <div class="navigationContainer">
+            <div class="innerNavigationContainer">
+             Modul 1<button class="button-primary" onclick="swapMenuItem()">${swapButtonName()}</button>
+             ${navigationMenu()}
+             </div>
+         </div>
 
-    <div class="bodyContainer">
-        ${body()}
+        <div class="titleContainer">
+            ${title()}
+            <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-for-mobile-apps-2/512/Settings_black-512.png" width="20px" height="20px" onclick="toggleColorBlindMode()">
+        </div>
 
-    </div>
-     ${displayChatContainer()}
+        <div class="bodyContainer">
+            <div class="innerBodyContainer">
+                ${body()}
+            </div>
+
+        </div>
+        <div>
+            ${displayChatContainer()}
+        </div>
     </div>
     `;
 
     if (loggedInUserIsAdmin())
         fillPieCharts();
-    
-    
+
+
     if(model.PageStates.selectedStudent == '') return;
     let input = document.getElementById("chatInput");
 
@@ -43,21 +49,22 @@ function adminView() {
 }
 
 function displayChatContainer() {
-    
+
     let html = `
     <div class="chatContainer" max-width="200px" max-height="200px">
+    <div class="innerChatContainer">
     <input id="chatInput" type="text" value="${model.inputs.defaultChatMessage}"  type="text" onclick="this.value=''" oninput="model.inputs.tempChatMessage=this.value"></input>
     <button class="button-primary" onclick="send()">Send</button>
     <input type="checkbox" ${isVisible()} name="Should message be visible?" onclick="isVisible()">Should task be visible?</input>
     </br>
      ${chatBox()}
-    
+</div>
     </div>`;
 
     if(model.PageStates.selectedStudent == '') return '';
 
     else return html;
-    
+
 }
 
 /*{ <input id="myInput" value="Some text..">

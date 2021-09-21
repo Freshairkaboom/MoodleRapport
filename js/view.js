@@ -1,42 +1,6 @@
-// Student Views hvor admin ser alle oppgavene per student
-// Title funksjon
-// Kommentar felt admin og user
-
-
-// UserView med "info side"
-
-// user View med oppgavene og radio knapper for å endre Started Not Started Finished
-// Ha en sjekk for om logget inn bruker er admin eller user, og vise approve-button/radio-buttons i forhold til dette
-
-/*
-
-function displayStudentInfoView()
-{
-    showRadioButtons();
-    showApprovedButtons();
-}
-
-function showRadioButtons()
-{
-    if (loggedInUser != UserInfoIsDisplayedFor) return;
-}
-
-function showApprovedButtons()
-{
-    if (loggedInUser.isAdmin == false) return;
-
-    return html "approve button her med onclick osv"
-}
-
-
-
-*/
-
-
 view();
 logInUser(); // CALLING FOR DEVELOPMENT_TESTING
-generateRandomTasks();
-//generateRandomData(); // DEVELOPER_FUNCTION
+generateRandomTasks(); // CALLING FOR DEVELOPMENT_TESTING
 
 function view() {
 
@@ -60,8 +24,6 @@ function view() {
 
 function chatBox()
 {
-    console.log("chatBox is being called()");
-
     if (loggedInUserIsAdmin())
         if(!model.PageStates.selectedStudent) return;
     else
@@ -82,9 +44,9 @@ function chatBox()
             break;
     }
 
-    console.log("UserID: " + userId);
+    // console.log("UserID: " + userId);
 
-    console.log(getChatData(userId));
+    // console.log(getChatData(userId));
 
     return getChatData(userId);
 }
@@ -126,6 +88,7 @@ function getChatData(_userId) {
 }
 
 function drawChatBox(chatData){
+
     let html = ``;
     let isAdmin = loggedInUserIsAdmin();
 
@@ -135,11 +98,15 @@ function drawChatBox(chatData){
 
     for (i = chatData.length-1; i >= 0; i--)
     {
+        let commentator = chatData[i].whoCommented == undefined ? " " : '[' + chatData[i].whoCommented + ']';
+        let timeStamp = chatData[i].timeStamp
+
+
         if (!chatData[i].isVisible)
         {
-            if (isAdmin) html += "(" + chatData[i].order + ") (hidden) " + '[' + chatData[i].whoCommented + ']' + ' ' + chatData[i].msg + `<br>`;
+            if (isAdmin) html += `<span class="timeStamp"> ${timeStamp} (hidden) ${commentator} </span> ` + " " + chatData[i].msg + `<br>`;
         }
-        else html += "(" + chatData[i].order + ") "  + '[' + chatData[i].whoCommented + ']' + ' ' + chatData[i].msg + `<br>`;
+        else html += `<span class="timeStamp"> ${timeStamp} (hidden) ${commentator} </span> ` + " " + chatData[i].msg + `<br>`;
     }
 
     return html;
@@ -156,17 +123,21 @@ function send(){
 
     if (message == model.inputs.defaultChatMessage) return;
 
-    let student = loggedInUserIsAdmin() ? model.PageStates.selectedStudent : model.app.loggedInUser.id;
+    let _user = loggedInUserIsAdmin() ?  model.PageStates.selectedStudent : model.app.loggedInUser.id;
+    let _userName = model.app.loggedInUser.name;
     let _week = model.PageStates.selectedWeek;
 
     let isTrue = isCheckedTrue();
 
-    let html = ``;
+    var newDate = new Date().toLocaleTimeString();
+    // let html = ``;
+
+    let currentTimeAsString = newDate;
 
     model.chatMsg.forEach(element =>{
-        if (element.studentId == student) {
+        if (element.studentId == _user) {
             let length = element.msgs.length + 1;
-            let newMessage = { week: _week, order: length, whoCommented: student, msg: message, isVisible: isTrue };
+            let newMessage = { week: _week, order: length, whoCommented: _userName, msg: message, timeStamp: currentTimeAsString, isVisible: isTrue };
 
             element.msgs.push(newMessage);
         }
@@ -178,45 +149,12 @@ function send(){
 }
 
 function isCheckedTrue() {
-    
 
-    
+    if (!loggedInUserIsAdmin()) return;
+
+
+
+    // Needs to check if the Show As hidden box is checked when used from the admin page
+
     return true;
 }
-
-/*
-<div id= "genre">
-What do you bust a move to?
-<br>
-<br>
-<form name="music" method="post" action="">
-<p>
-<input type="radio" name="music" value="radio" onClick="changeColour('b')">Blues
-<br>
-<input type="radio" name="music" value="radio" onClick="changeColour('r')">Rock
-<br>
-<input type="radio" name="music" value="radio" onClick="changeColour('p')">Pop
-<br>
-</form>
-</div>
-
-
-function changeColour(value)
-{
-    var color = document.body.style.backgroundColor;
-    switch(value)
-    {
-        case 'b':
-            color = "#FF0000";
-        break;
-        case 'r':
-            color = "#0000FF";
-        break;
-        case 'p':
-            color = "#FF00FF";
-        break;
-    }
-    document.body.style.backgroundColor = color;
-}
-
-*/

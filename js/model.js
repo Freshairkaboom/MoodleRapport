@@ -1,4 +1,4 @@
-const APP_VERSION_NUMBER = "v0.0000000000011 - Chatboxing :3";
+const APP_VERSION_NUMBER = "v0.0000000000012 - CSSUCKS :S";
 
 
 
@@ -18,28 +18,28 @@ const model = {
 
   chatMsg: [
     { studentId: 1, msgs: [
-      { week: 0, order: 1, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
-      { week: 0, order: 2, whoCommented: 0, msg: "Veeeeel...", isVisible: false},
-      { week: 0, order: 3, whoCommented: 0, msg: "Sjakk er gøy", isVisible: false},
-      { week: 0, order: 4, whoCommented: 0, msg: "Daniel er kul", isVisible: false},
-      { week: 0, order: 5, whoCommented: 0, msg: "Nå eru snart ute", isVisible: false},
-      
+      { week: 0, order: 1, whoCommented: 'Admin', msg: "Bra jobbet", timeStamp: '12:20:00', isVisible: true },
+      { week: 0, order: 2, whoCommented: 'Admin', msg: "Veeeeel...", timeStamp: '', isVisible: false},
+      { week: 0, order: 3, whoCommented: 'Admin', msg: "Sjakk er gøy", timeStamp: '', isVisible: false},
+      { week: 0, order: 4, whoCommented: 'Admin', msg: "Daniel er kul", timeStamp: '', isVisible: false},
+      { week: 0, order: 5, whoCommented: 'Admin', msg: "Nå eru snart ute", timeStamp: '', isVisible: false},
+
    ],},
     { studentId: 2, msgs: [
-      { week: 0, order: 0, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
-      { week: 0, order: 1, whoCommented: 0, msg: "Veeeeel...", isVisible: false},
+      { week: 0, order: 0, whoCommented: 'Admin', msg: "Bra jobbet", timeStamp: '', isVisible: true },
+      { week: 0, order: 1, whoCommented: 'Admin', msg: "Veeeeel...", timeStamp: '', isVisible: false},
     ],},
     { studentId: 3, msgs: [
-      { week: 0, order: 0, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
-      { week: 0, order: 1, whoCommented: 0, msg: "Veeeeel...", isVisible: false},
+      { week: 0, order: 0, whoCommented: 'Admin', msg: "Bra jobbet", timeStamp: '', isVisible: true },
+      { week: 0, order: 1, whoCommented: 'Admin', msg: "Veeeeel...", timeStamp: '', isVisible: false},
     ],},
     { studentId: 4, msgs: [
-      { week: 0, order: 0, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
-      { week: 0, order: 1, whoCommented: 0, msg: "Veeeeel...", isVisible: false},
+      { week: 0, order: 0, whoCommented: 'Admin', msg: "Bra jobbet", timeStamp: '', isVisible: true },
+      { week: 0, order: 1, whoCommented: 'Admin', msg: "Veeeeel...", timeStamp: '', isVisible: false},
     ],},
     { studentId: 5, msgs: [
-      { week: 0, order: 0, whoCommented: 0, msg: "Bra jobbet", isVisible: true },
-      { week: 0, order: 1, whoCommented: 0, Msg: "Veeeeel...", isVisible: false},
+      { week: 0, order: 0, whoCommented: 'Admin', msg: "Bra jobbet", timeStamp: '', isVisible: true },
+      { week: 0, order: 1, whoCommented: 'Admin', msg: "Veeeeel...", timeStamp: '', isVisible: false},
     ],},
     { studentId: 6,  msgs: [],},
     { studentId: 7,  msgs: [],},
@@ -74,21 +74,13 @@ const model = {
     tempChatMessage: "Skriv her...",
   },
 
-
-
-
-
-
-
-
-
   chatBox: [
     { id: 0, whoCommented: 0, Owner: 1, Msg: "Bra jobbet", isVisible: true }
   ],
 
   // Common data
 
-  totalUsersMade: 14,
+  totalUsersMade: 18,
 
   users: [
     { id: 0,  name: "Admin",       password: "admin", isAdmin: true,  isDisabled: false },
@@ -103,8 +95,11 @@ const model = {
     { id: 9,  name: "Kasper",      password: "admin", isAdmin: false, isDisabled: false },
     { id: 10, name: "Mailinn",     password: "admin", isAdmin: false, isDisabled: false },
     { id: 11, name: "MagzyBogues", password: "admin", isAdmin: false, isDisabled: false },
-    { id: 12, name: "Mats",        password: "admin", isAdmin: false, isDisabled: false },
-    { id: 13, name: "Disabled",    password: "admin", isAdmin: false, isDisabled: true  },
+    { id: 13, name: "Mats",        password: "admin", isAdmin: false, isDisabled: false },
+    { id: 14, name: "Nanna",       password: "admin", isAdmin: false, isDisabled: false },
+    { id: 15, name: "Nikolai",     password: "admin", isAdmin: false, isDisabled: false },
+    { id: 16, name: "Stefanos",    password: "admin", isAdmin: false, isDisabled: false },
+    { id: 17, name: "Disabled",    password: "admin", isAdmin: false, isDisabled: true  },
   ],
 
 
@@ -116,7 +111,6 @@ const model = {
     { weekId: 5, description: "Uke 5", taskCount: 5 },
     { weekId: 6, description: "Uke 6", taskCount: 2 },
     { weekId: 7, description: "Bonus-Pensum", taskCount: 24 },
-    { weekId: 8, description: "N/A", taskCount: 0 },
   ],
 
 
@@ -552,20 +546,20 @@ const model = {
     },
   ],
 
-  
+
 /*
 
-  
-  
-  
-  
-  
+
+
+
+
+
 
 */
 
 
 
-  
+
   /*
   function getAssignment(weekIndex, taskInWeek) {
       for (let assignment og model.assignments) {

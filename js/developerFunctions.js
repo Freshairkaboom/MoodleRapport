@@ -20,6 +20,8 @@ function clearRandomData()
 
 function generateRandomTasks()
 {
+    let startStudent = 3; // By ID: Meaning 0 is Admin
+
     model.tasks = [];
     model.totalTasksMade = 0;
 
@@ -27,12 +29,12 @@ function generateRandomTasks()
     let progressLength = 3; //Enum Progress has 3 properties
 
     let students = 0;
-    model.users.forEach(task => {
-        if (!task.isAdmin && !task.isDisabled)
+    model.users.forEach(user => {
+        if (!user.isAdmin && !user.isDisabled)
             students++
     });
 
-    for (s = 0; s < students; s++)
+    for (s = startStudent; s <= students; s++)
     {
         for (w = 0; w < totalWeeks; w++)
         {

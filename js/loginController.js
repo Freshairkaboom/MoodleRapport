@@ -58,8 +58,8 @@ function confirmUser(_user, _pw)
     if (!foundUser && !isDisabled) { model.inputs.loginPage.errorMessage = ErrorMessages.USER_WRONG_INFO; return Pages.LOGIN; }
     else if (!foundUser && isDisabled) { return Pages.LOGIN; }
 
-    if (model.app.loggedInUser.isAdmin) { console.log("ADMIN"); return Pages.ADMIN }
-    else { console.log("USER"); return Pages.USER; }
+    if (model.app.loggedInUser.isAdmin) { return Pages.ADMIN }
+    else { return Pages.USER; }
 }
 
 function logOutUser()

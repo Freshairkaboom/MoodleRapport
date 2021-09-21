@@ -30,9 +30,6 @@ function changeColour(color, index, _progress)
     if (task == null) return;
 
     task.progress = _progress;
-
-    console.log("Color: " + color + " Index: " + index + " Task: " + _progress);
-    console.log("Exception - Not Implemented yet");
 }
 
 function createStudentPage()
