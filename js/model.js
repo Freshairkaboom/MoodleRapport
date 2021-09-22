@@ -1,4 +1,4 @@
-const APP_VERSION_NUMBER = "v0.0000000000012 - CSSUCKS :S";
+const APP_VERSION_NUMBER = "v0.0000000000013 - WHATS IN THE BOXXXX :D";
 
 
 
@@ -19,10 +19,10 @@ const model = {
   chatMsg: [
     { studentId: 1, msgs: [
       { week: 0, order: 1, whoCommented: 'Admin', msg: "Bra jobbet", timeStamp: '12:20:00', isVisible: true },
-      { week: 0, order: 2, whoCommented: 'Admin', msg: "Veeeeel...", timeStamp: '', isVisible: false},
-      { week: 0, order: 3, whoCommented: 'Admin', msg: "Sjakk er gøy", timeStamp: '', isVisible: false},
-      { week: 0, order: 4, whoCommented: 'Admin', msg: "Daniel er kul", timeStamp: '', isVisible: false},
-      { week: 0, order: 5, whoCommented: 'Admin', msg: "Nå eru snart ute", timeStamp: '', isVisible: false},
+      { week: 0, order: 2, whoCommented: 'Admin', msg: "Veeeeel...", timeStamp: '',         isVisible: false},
+      { week: 0, order: 3, whoCommented: 'Admin', msg: "Sjakk er gøy", timeStamp: '',       isVisible: false},
+      { week: 0, order: 4, whoCommented: 'Admin', msg: "Daniel er kul", timeStamp: '',      isVisible: false},
+      { week: 0, order: 5, whoCommented: 'Admin', msg: "Nå eru snart ute", timeStamp: '',   isVisible: false},
 
    ],},
     { studentId: 2, msgs: [
@@ -63,7 +63,7 @@ const model = {
     selectedStudent: '',
   },
 
-  // Input level
+  // Input levelw
   inputs: {
     loginPage: {
       username: "",
@@ -74,9 +74,9 @@ const model = {
     tempChatMessage: "Skriv her...",
   },
 
-  chatBox: [
-    { id: 0, whoCommented: 0, Owner: 1, Msg: "Bra jobbet", isVisible: true }
-  ],
+  chatBox: { isHiddenBoxTicked: true, },/*[
+     { id: 0, whoCommented: 0, Owner: 1, Msg: "Bra jobbet", isVisible: true, isHiddenBoxTicked: true }
+  ],*/
 
   // Common data
 

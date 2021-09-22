@@ -9,7 +9,8 @@ function loginView() {
     else
     {
         document.getElementById('app').innerHTML = `
-        <div class="container">
+        <img src="https://www.getacademy.no/img/GET_ACADEMY_VEKTOR_LOGO_2021.e961189a.svg" width="200px" height="200px"></img><br>
+        <div class="loginContainer">
 
         <input id="username" type="text" value="Username" onclick="this.value=''" onchange="model.inputs.loginPage.username=this.value"></input> Forgotten username or password?
         </br>

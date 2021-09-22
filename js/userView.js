@@ -7,6 +7,8 @@ function userView() {
     <div class="pageContainer">
 
         <div class="bannerContainer">
+        <small>Color blind mode</small> <img src="https://icon-library.com/images/color-wheel-icon-png/color-wheel-icon-png-4.jpg" width="20px" height="20px" onclick="toggleColorBlindMode()">
+        |
             ${model.app.loggedInUser.name}
             <button class="button-primary" onclick="logOutUser()"> Log out</button>
         </div>
@@ -18,7 +20,6 @@ function userView() {
 
         <div class="titleContainer">
                 Velkommen! Her finner du oppgavene for ${title()}
-                <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-for-mobile-apps-2/512/Settings_black-512.png" width="20px" height="20px" onclick="toggleColorBlindMode()">
         </div>
 
         <div class="bodyContainer">

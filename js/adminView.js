@@ -4,20 +4,23 @@ function adminView() {
     <div class="pageContainer">
 
         <div class="bannerContainer">
+        <small>Color blind mode</small> <img src="https://icon-library.com/images/color-wheel-icon-png/color-wheel-icon-png-4.jpg" width="20px" height="20px" onclick="toggleColorBlindMode()">
+            |
             ${model.app.loggedInUser.name}
             <button class="button-primary" onclick="logOutUser()"> Log out</button>
         </div>
 
         <div class="navigationContainer">
             <div class="innerNavigationContainer">
-             Modul 1<button class="button-primary" onclick="swapMenuItem()">${swapButtonName()}</button>
+            Modul 1<button class="button-primary" onclick="swapMenuItem()">${swapButtonName()}</button>
              ${navigationMenu()}
              </div>
          </div>
 
         <div class="titleContainer">
+
             ${title()}
-            <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-for-mobile-apps-2/512/Settings_black-512.png" width="20px" height="20px" onclick="toggleColorBlindMode()">
+
         </div>
 
         <div class="bodyContainer">
@@ -48,6 +51,17 @@ function adminView() {
 
 }
 
+function isCheckBoxTicked()
+{
+    if (model.chatBox.isHiddenBoxTicked) return "checked";
+    else return "";
+}
+
+function isCheckBoxTickedAsBool()
+{
+    if (model.chatBox.isHiddenBoxTicked) return true;
+    else return false;
+}
 function displayChatContainer() {
 
     let html = `
@@ -55,7 +69,7 @@ function displayChatContainer() {
     <div class="innerChatContainer">
     <input id="chatInput" type="text" value="${model.inputs.defaultChatMessage}"  type="text" onclick="this.value=''" oninput="model.inputs.tempChatMessage=this.value"></input>
     <button class="button-primary" onclick="send()">Send</button>
-    <input type="checkbox" ${isVisible()} name="Should message be visible?" onclick="isVisible()">Should task be visible?</input>
+    <input type="checkbox" ${isCheckBoxTicked()} name="Should message be visible?" onclick="setVisibilityStatus(${isCheckBoxTickedAsBool()})">Skal meldingen vises?</input>
     </br>
      ${chatBox()}
 </div>

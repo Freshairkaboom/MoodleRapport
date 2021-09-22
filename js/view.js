@@ -44,10 +44,6 @@ function chatBox()
             break;
     }
 
-    // console.log("UserID: " + userId);
-
-    // console.log(getChatData(userId));
-
     return getChatData(userId);
 }
 
@@ -66,7 +62,7 @@ function getChatData(_userId) {
         }
     }
 
-    let _week = model.PageStates.selectedWeek; // hent denne på en annen måte
+    let _week = model.PageStates.selectedWeek;
     let _messages = [];
 
     if (model.chatMsg[chatLogId] == undefined) { console.log("Log contains no messages"); return; }
@@ -101,12 +97,11 @@ function drawChatBox(chatData){
         let commentator = chatData[i].whoCommented == undefined ? " " : '[' + chatData[i].whoCommented + ']';
         let timeStamp = chatData[i].timeStamp
 
-
         if (!chatData[i].isVisible)
         {
             if (isAdmin) html += `<span class="timeStamp"> ${timeStamp} (hidden) ${commentator} </span> ` + " " + chatData[i].msg + `<br>`;
         }
-        else html += `<span class="timeStamp"> ${timeStamp} (hidden) ${commentator} </span> ` + " " + chatData[i].msg + `<br>`;
+        else html += `<span class="timeStamp"> ${timeStamp} ${commentator} </span> ` + " " + chatData[i].msg + `<br>`;
     }
 
     return html;
@@ -127,17 +122,18 @@ function send(){
     let _userName = model.app.loggedInUser.name;
     let _week = model.PageStates.selectedWeek;
 
-    let isTrue = isCheckedTrue();
-
     var newDate = new Date().toLocaleTimeString();
-    // let html = ``;
 
     let currentTimeAsString = newDate;
+
+    let isMessageHidden = loggedInUserIsAdmin() ? model.chatBox.isHiddenBoxTicked : true;
+
+    console.log("Message is visible: " + isMessageHidden);
 
     model.chatMsg.forEach(element =>{
         if (element.studentId == _user) {
             let length = element.msgs.length + 1;
-            let newMessage = { week: _week, order: length, whoCommented: _userName, msg: message, timeStamp: currentTimeAsString, isVisible: isTrue };
+            let newMessage = { week: _week, order: length, whoCommented: _userName, msg: message, timeStamp: currentTimeAsString, isVisible: isMessageHidden };
 
             element.msgs.push(newMessage);
         }
@@ -148,13 +144,9 @@ function send(){
     model.inputs.tempChatMessage = model.inputs.defaultChatMessage;
 }
 
-function isCheckedTrue() {
+function setVisibilityStatus(isTicked) {
 
-    if (!loggedInUserIsAdmin()) return;
+    model.chatBox.isHiddenBoxTicked = !isTicked;
 
-
-
-    // Needs to check if the Show As hidden box is checked when used from the admin page
-
-    return true;
+    console.log(model.chatBox.isHiddenBoxTicked)
 }

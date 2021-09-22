@@ -272,7 +272,3 @@ function findTaskByIndex(index)
 
     return _task;
 }
-
-function isVisible() {
-
-}
