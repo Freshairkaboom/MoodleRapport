@@ -524,8 +524,6 @@ hr {
   padding-top: 20px;
 }
 
-
-
 .bodyContainer {
   /* grid-area: 3 / 2 / 11 / 7; */
   text-align: center;
@@ -546,6 +544,8 @@ hr {
 
   padding-bottom: 20px;
   }
+
+
 
   .loginContainer {
 
@@ -577,6 +577,9 @@ hr {
   padding-left: 5px;
   max-height: 200px;
   min-height: 200px;
+  padding-top: 10px;
+
+
 
 
   }
@@ -585,9 +588,9 @@ hr {
     overflow-x: hidden;
     width: 39.9vW;
     max-height: 200px;
-    padding-left: -500px;
     padding-bottom: 20px;
     padding-top: 10px;
+
 
   }
 .titleContainer {
@@ -701,7 +704,6 @@ body {
 }
 
 .timeStamp {
-  color: aquamarine;
+  color: black;
   font-size: 12px;
-  text-shadow: 2px 0 0 #000, -2px 0 0#000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }

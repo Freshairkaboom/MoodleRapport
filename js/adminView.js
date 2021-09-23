@@ -4,7 +4,7 @@ function adminView() {
     <div class="pageContainer">
 
         <div class="bannerContainer">
-        <small>Color blind mode</small> <img src="https://icon-library.com/images/color-wheel-icon-png/color-wheel-icon-png-4.jpg" width="20px" height="20px" onclick="toggleColorBlindMode()">
+        <small>Fargeblind modus</small> <img src="https://icon-library.com/images/color-wheel-icon-png/color-wheel-icon-png-4.jpg" width="20px" height="20px" onclick="toggleColorBlindMode()">
             |
             ${model.app.loggedInUser.name}
             <button class="button-primary" onclick="logOutUser()"> Log out</button>

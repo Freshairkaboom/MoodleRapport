@@ -113,6 +113,9 @@ function createAssignmentContainers()
     setDisplayedTasks(_week, _student);
 
     html += createWeekButtons();
+
+    html += createColorExplanations();
+
     html += createAssignmentTable();
     // html += createChatBox();
 

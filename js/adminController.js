@@ -78,3 +78,26 @@ function addAdminColor(progress)
 
     return html;
 }
+
+function createStudentPage()
+{
+    let _week = model.PageStates.selectedWeek;
+    let _student = model.PageStates.selectedStudent;
+
+
+    let weekOutOfRange = (_week < 0 || _week >= model.weeks.length);
+
+    if (weekOutOfRange || _student == "") { console.log(_week + "/" + _student);
+    return; }
+
+
+    setDisplayedTasks(_week, _student);
+
+
+    let html = createWeekButtons();
+    html += createTaskList();
+
+    if (html != "")
+    return html
+    else return "";
+}

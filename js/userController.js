@@ -32,27 +32,34 @@ function changeColour(color, index, _progress)
     task.progress = _progress;
 }
 
-function createStudentPage()
-{
-    let _week = model.PageStates.selectedWeek;
-    let _student = model.PageStates.selectedStudent;
+function createColorExplanations() {
+    if(loggedInUserIsAdmin()) return "";
+
+    let html = '';
+    let size = 20;
+
+    html += `<br>
+    <svg width="${size}" height="${size}">
+    <rect width="${size}" height="${size}" style="fill:${Color.red};stroke-width:3;stroke:rgb(0,0,0)" />
+    </svg> = Ikke Startet oppgaven.
+
+    <svg width="${size}" height="${size}">
+    <rect width="${size}" height="${size}" style="fill:${Color.yellow};stroke-width:3;stroke:rgb(0,0,0)" />
+    </svg> = Startet oppgaven.
+
+    <svg width="${size}" height="${size}">
+    <rect width="${size}" height="${size}" style="fill:${Color.green};stroke-width:3;stroke:rgb(0,0,0)" />
+    </svg> = Ferdig med oppgaven.
+    <svg width="${size}" height="${size}">
+    <rect width="${size}" height="${size}" style="fill:${Color.black};stroke-width:3;stroke:rgb(0,0,0)" />
+    </svg> = Oppgaven er ikke godkjent.
+    <svg width="${size}" height="${size}">
+    <rect width="${size}" height="${size}" style="fill:${Color.white};stroke-width:3;stroke:rgb(0,0,0)" />
+    </svg> = Oppgaven er godkjent.
+    `;
 
 
-    let weekOutOfRange = (_week < 0 || _week >= model.weeks.length);
-
-    if (weekOutOfRange || _student == "") { console.log(_week + "/" + _student);
-    return; }
-
-
-    setDisplayedTasks(_week, _student);
-
-
-    let html = createWeekButtons();
-    html += createTaskList();
-
-    if (html != "")
-    return html
-    else return "";
+    return html;
 }
 
 function setDisplayedTasks(week, _student)

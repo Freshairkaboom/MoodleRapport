@@ -28,7 +28,7 @@ function generateRandomTasks()
     let totalWeeks = model.weeks.length;
     let progressLength = 3; //Enum Progress has 3 properties
 
-    let students = 0;
+    let students = 1;
     model.users.forEach(user => {
         if (!user.isAdmin && !user.isDisabled)
             students++

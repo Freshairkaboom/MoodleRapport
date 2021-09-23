@@ -26,7 +26,7 @@ function loginView() {
        </hr>
 
        </br>
-       Moodle Rapport very early access ${APP_VERSION_NUMBER}
+       Moodle Rapport early access ${APP_VERSION_NUMBER}
        </div>
 
        `;
