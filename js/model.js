@@ -83,7 +83,7 @@ const model = {
   totalUsersMade: 18,
 
   users: [
-    { id: 0,  name: "Admin",       password: "admin", isAdmin: true,  isDisabled: false },
+    { id: 0,  name: "Marie",       password: "admin", isAdmin: true,  isDisabled: false },
     { id: 1,  name: "Lars",        password: "admin", isAdmin: false, isDisabled: false },
     { id: 2,  name: "Morten",      password: "admin", isAdmin: false, isDisabled: false },
     { id: 3,  name: "Daniel",      password: "admin", isAdmin: false, isDisabled: false },
